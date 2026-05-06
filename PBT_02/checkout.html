@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+</head>
+<body>
+<h1>Trang đặt hàng</h1>
+<h2>Giỏ hàng</h2>
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Sản phẩm</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>iPhone 16</td>
+            <td>20.000.000</td>
+            <td>1</td>
+            <td>20.000.000</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>AirPods Pro</td>
+            <td>5.000.000</td>
+            <td>2</td>
+            <td>10.000.000</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Apple Watch</td>
+            <td>8.000.000</td>
+            <td>1</td>
+            <td>8.000.000</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="4"><strong>Tổng cộng</strong></td>
+            <td><strong>38.000.000</strong></td>
+        </tr>
+    </tfoot>
+</table>
+<p>Tổng tiền: <output>38.000.000 VNĐ</output></p>
+<hr>
+<h2>Thanh toán</h2>
+<form action="#" method="POST">
+    <label for="search">Tìm sản phẩm:</label><br>
+    <input list="products" id="search" name="search" placeholder="Nhập tên sản phẩm">
+    <datalist id="products">
+        <option value="iPhone 16">
+        <option value="AirPods Pro">
+        <option value="Apple Watch">
+    </datalist>
+    <br><br>
+    <p>Phương thức thanh toán:</p>
+    <label>
+        <input type="radio" name="payment" value="cod" required>
+        COD
+    </label>
+    <label>
+        <input type="radio" name="payment" value="bank">
+        Chuyển khoản
+    </label>
+    <label>
+        <input type="radio" name="payment" value="wallet">
+        Ví điện tử
+    </label>
+    <br><br>
+    <label for="coupon">Mã giảm giá:</label><br>
+    <input type="text" id="coupon" name="coupon"
+           pattern="SALE[0-9]{4}"
+           placeholder="SALE2026">
+    <br><br>
+    <label for="note">Ghi chú:</label><br>
+    <textarea id="note" name="note" rows="3"
+              placeholder="Ghi chú thêm..."></textarea>
+
+    <hr>
+    <h2>Thông tin giao hàng</h2>
+    <label for="delivery">Ngày giao hàng:</label><br>
+    <input type="date" id="delivery" name="delivery"
+           min="2026-05-04">
+    <br><br>
+    <label for="time">Khung giờ:</label><br>
+    <select id="time" name="time">
+        <option value="">-- Chọn khung giờ --</option>
+        <option value="morning">Sáng (8-12h)</option>
+        <option value="afternoon">Chiều (14-18h)</option>
+        <option value="evening">Tối (18-21h)</option>
+    </select>
+    <br><br>
+    <label for="range">Thời gian giao hàng (ngày):</label><br>
+    <input type="range" id="range" name="range"
+           min="1" max="7" step="1">
+    <br><br>
+    <p>Điểm tích lũy:</p>
+    <meter value="70" min="0" max="100"></meter>
+    <br><br>
+    <button type="submit" aria-label="Xác nhận đặt hàng">
+        Đặt hàng
+    </button>
+
+</form>
+
+</body>
+</html>

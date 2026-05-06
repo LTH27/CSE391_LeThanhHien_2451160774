@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation Test</title>
+</head>
+<body>
+
+<h2>Test HTML5 Validation</h2>
+
+<form>
+    <p>Trường hợp 1 (required):</p>
+    <input type="text" required value="">
+
+    <p>Trường hợp 2 (email):</p>
+    <input type="email" value="abc">
+
+    <p>Trường hợp 3 (number min/max):</p>
+    <input type="number" min="1" max="10" value="15">
+
+    <p>Trường hợp 4 (pattern):</p>
+    <input type="text" pattern="[0-9]{10}" value="abc123">
+
+    <p>Trường hợp 5 (minlength):</p>
+    <input type="password" minlength="8" value="123">
+
+    <br><br>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
