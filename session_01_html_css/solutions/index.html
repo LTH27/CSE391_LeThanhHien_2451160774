@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Full Stack Developer</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/hero.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/skills.css">
+    <link rel="stylesheet" href="css/portfolio.css">
+    <link rel="stylesheet" href="css/contact.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">YourName</div>
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                <nav>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hi, I'm Your Name</h1>
+            <p class="subtitle">Full-Stack Developer | UI Designer | Problem Solver</p>
+            <a href="#portfolio" class="cta-button">View My Work</a>
+        </div>
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/400x400" alt="Profile Photo">
+                </div>
+                <div class="about-content">
+                    <h2>About Me</h2>
+                    <p class="lead">I'm a passionate developer with 3+ years of experience building web applications.</p>
+                    <p>Specialized in Frontend development with React and Vue. Also experienced in Backend with Node.js and Python. I love creating beautiful, functional, and user-friendly digital experiences.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing knowledge with the developer community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">HTML5 & CSS3</span>
+                        <span class="skill-percent">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress-width: 95%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">JavaScript</span>
+                        <span class="skill-percent">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress-width: 90%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">React.js</span>
+                        <span class="skill-percent">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress-width: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Node.js</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress-width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">UI/UX Design</span>
+                        <span class="skill-percent">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress-width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="skill-header">
+                        <span class="skill-name">Database Design</span>
+                        <span class="skill-percent">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="--progress-width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <h2>My Portfolio</h2>
+            <div class="portfolio-filters">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Web</button>
+                <button class="filter-btn">Mobile</button>
+                <button class="filter-btn">Design</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Web Project 1 -->
+                <a href="#lightbox-1" class="portfolio-item" data-category="web">
+                    <img src="https://via.placeholder.com/400x300/6366f1/ffffff?text=E-Commerce" alt="E-Commerce Website">
+                    <div class="portfolio-overlay">
+                        <h3>E-Commerce Website</h3>
+                        <p>React + Node.js + MongoDB</p>
+                    </div>
+                </a>
+
+                <!-- Web Project 2 -->
+                <a href="#lightbox-2" class="portfolio-item" data-category="web">
+                    <img src="https://via.placeholder.com/400x300/8b5cf6/ffffff?text=Task+Manager" alt="Task Manager App">
+                    <div class="portfolio-overlay">
+                        <h3>Task Manager App</h3>
+                        <p>Vue.js + Firebase</p>
+                    </div>
+                </a>
+
+                <!-- Web Project 3 -->
+                <a href="#lightbox-3" class="portfolio-item" data-category="web">
+                    <img src="https://via.placeholder.com/400x300/10b981/ffffff?text=Blog+Platform" alt="Blog Platform">
+                    <div class="portfolio-overlay">
+                        <h3>Blog Platform</h3>
+                        <p>Next.js + Strapi CMS</p>
+                    </div>
+                </a>
+
+                <!-- Mobile Project 1 -->
+                <a href="#lightbox-4" class="portfolio-item" data-category="mobile">
+                    <img src="https://via.placeholder.com/400x300/f59e0b/ffffff?text=Weather+App" alt="Weather App">
+                    <div class="portfolio-overlay">
+                        <h3>Weather App</h3>
+                        <p>React Native + OpenWeather API</p>
+                    </div>
+                </a>
+
+                <!-- Mobile Project 2 -->
+                <a href="#lightbox-5" class="portfolio-item" data-category="mobile">
+                    <img src="https://via.placeholder.com/400x300/ef4444/ffffff?text=Fitness+Tracker" alt="Fitness Tracker">
+                    <div class="portfolio-overlay">
+                        <h3>Fitness Tracker</h3>
+                        <p>Flutter + Firebase</p>
+                    </div>
+                </a>
+
+                <!-- Design Project -->
+                <a href="#lightbox-6" class="portfolio-item" data-category="design">
+                    <img src="https://via.placeholder.com/400x300/6366f1/ffffff?text=UI+Design+System" alt="UI Design System">
+                    <div class="portfolio-overlay">
+                        <h3>UI Design System</h3>
+                        <p>Figma Component Library</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightboxes -->
+    <div id="lightbox-1" class="lightbox">
+        <img src="https://via.placeholder.com/900x600/6366f1/ffffff?text=E-Commerce+Website" alt="E-Commerce Website">
+        <a href="#" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-2" class="lightbox">
+        <img src="https://via.placeholder.com/900x600/8b5cf6/ffffff?text=Task+Manager+App" alt="Task Manager App">
+        <a href="#" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-3" class="lightbox">
+        <img src="https://via.placeholder.com/900x600/10b981/ffffff?text=Blog+Platform" alt="Blog Platform">
+        <a href="#" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-4" class="lightbox">
+        <img src="https://via.placeholder.com/900x600/f59e0b/ffffff?text=Weather+App" alt="Weather App">
+        <a href="#" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-5" class="lightbox">
+        <img src="https://via.placeholder.com/900x600/ef4444/ffffff?text=Fitness+Tracker" alt="Fitness Tracker">
+        <a href="#" class="lightbox-close">&times;</a>
+    </div>
+
+    <div id="lightbox-6" class="lightbox">
+        <img src="https://via.placeholder.com/900x600/6366f1/ffffff?text=UI+Design+System" alt="UI Design System">
+        <a href="#" class="lightbox-close">&times;</a>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out. I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
+                    <div class="info-item">
+                        <span class="icon">📧</span>
+                        <span>your.email@example.com</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📞</span>
+                        <span>+84 (0) 123 456 789</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="icon">📍</span>
+                        <span>Hanoi, Vietnam</span>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Your message..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <div class="footer-logo">YourName</div>
+                </div>
+                <div>
+                    <p class="footer-tagline">Building digital experiences that matter</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="GitHub" title="GitHub">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="LinkedIn" title="LinkedIn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="Email" title="Email">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 YourName. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
