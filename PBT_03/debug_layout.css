@@ -1,0 +1,452 @@
+/* ===== RESET & BASE ===== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f0f2f5;
+  color: #1a1a2e;
+  line-height: 1.6;
+  padding: 40px 20px 80px;
+}
+
+/* ===== PAGE HEADER ===== */
+.page-header {
+  max-width: 1060px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+
+.page-header h1 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #16213e;
+  margin-bottom: 8px;
+}
+
+.page-header h1 span {
+  color: #e94560;
+}
+
+.page-header .subtitle {
+  font-size: 1.1rem;
+  color: #555;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ===== SECTION CARD ===== */
+.section-card {
+  max-width: 1060px;
+  margin: 0 auto 48px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+  padding: 28px 36px;
+  border-bottom: 1px solid #eee;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-header .tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+}
+
+.tag-broken {
+  background: #fde8ec;
+  color: #c0392b;
+}
+
+.tag-fixed {
+  background: #e8f8f0;
+  color: #27ae60;
+}
+
+.section-header p {
+  margin-top: 6px;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* ===== BANNER ===== */
+.banner {
+  padding: 14px 36px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.banner-error {
+  background: #fdecea;
+  color: #c0392b;
+  border-left: 4px solid #e74c3c;
+}
+
+.banner-success {
+  background: #e8f8f0;
+  color: #1e8449;
+  border-left: 4px solid #27ae60;
+}
+
+/* ===== MATH BLOCK ===== */
+.math-block {
+  padding: 24px 36px;
+  background: #f8f9fc;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.math-block h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.math-rows {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.math-row {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 14px 20px;
+  flex: 1 1 220px;
+  min-width: 220px;
+}
+
+.math-row .label {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.math-row .formula {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #16213e;
+}
+
+.math-row .result {
+  font-size: 0.85rem;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+.result-bad {
+  color: #c0392b;
+}
+
+.result-good {
+  color: #27ae60;
+}
+
+/* ===== DEMO AREA ===== */
+.demo-area {
+  padding: 36px;
+}
+
+.demo-area h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+
+/* ===== LAYOUT CONTAINERS ===== */
+
+/* --- Section 1: Broken layout (content-box, original widths) --- */
+.broken-container {
+  width: 960px;
+  margin: 0 auto;
+  background: #fef9f9;
+  border: 2px dashed #e74c3c;
+  border-radius: 8px;
+  position: relative;
+}
+
+.broken-container::after {
+  content: "960px container";
+  position: absolute;
+  top: -28px;
+  right: 0;
+  font-size: 0.75rem;
+  color: #e74c3c;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.broken-sidebar {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fff;
+  box-sizing: content-box;
+}
+
+.broken-content {
+  width: 660px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fff;
+  box-sizing: content-box;
+}
+
+/* --- Section 2: Fix 1 — border-box --- */
+.fix1-container {
+  width: 960px;
+  margin: 0 auto;
+  background: #f0faf5;
+  border: 2px dashed #27ae60;
+  border-radius: 8px;
+  position: relative;
+}
+
+.fix1-container::after {
+  content: "960px container";
+  position: absolute;
+  top: -28px;
+  right: 0;
+  font-size: 0.75rem;
+  color: #27ae60;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.fix1-sidebar {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.fix1-content {
+  width: 660px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* --- Section 3: Fix 2 — recalculated widths, content-box --- */
+.fix2-container {
+  width: 960px;
+  margin: 0 auto;
+  background: #f0faf5;
+  border: 2px dashed #27ae60;
+  border-radius: 8px;
+  position: relative;
+}
+
+.fix2-container::after {
+  content: "960px container";
+  position: absolute;
+  top: -28px;
+  right: 0;
+  font-size: 0.75rem;
+  color: #27ae60;
+  font-weight: 700;
+  font-family: 'Courier New', monospace;
+}
+
+.fix2-sidebar {
+  width: 258px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fff;
+  box-sizing: content-box;
+}
+
+.fix2-content {
+  width: 598px;
+  padding: 30px;
+  border: 1px solid #ccc;
+  float: left;
+  background: #fff;
+  box-sizing: content-box;
+}
+
+/* ===== CLEARFIX ===== */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* ===== SIDEBAR CONTENT ===== */
+.sidebar-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #16213e;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e94560;
+}
+
+.sidebar-menu {
+  list-style: none;
+}
+
+.sidebar-menu li {
+  padding: 9px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.9rem;
+  color: #444;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.sidebar-menu li:last-child {
+  border-bottom: none;
+}
+
+.sidebar-menu li::before {
+  content: "›";
+  margin-right: 8px;
+  color: #e94560;
+  font-weight: 700;
+}
+
+.sidebar-menu li:hover {
+  color: #e94560;
+}
+
+/* ===== MAIN CONTENT ===== */
+.content-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #16213e;
+}
+
+.content-text {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.75;
+}
+
+.content-text p + p {
+  margin-top: 10px;
+}
+
+/* ===== CSS CODE BLOCK ===== */
+.code-block {
+  padding: 24px 36px;
+  background: #1a1a2e;
+  border-top: 1px solid #2a2a4a;
+}
+
+.code-block h3 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #8888aa;
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.code-block pre {
+  background: #16213e;
+  border-radius: 8px;
+  padding: 20px;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.code-block code {
+  color: #a8d8ea;
+  font-family: 'Courier New', Consolas, monospace;
+}
+
+.code-block code .prop {
+  color: #9b59b6;
+}
+
+.code-block code .val {
+  color: #f39c12;
+}
+
+.code-block code .sel {
+  color: #e94560;
+}
+
+.code-block code .cmt {
+  color: #636e72;
+  font-style: italic;
+}
+
+.code-block code .hl {
+  color: #2ecc71;
+  font-weight: 700;
+}
+
+/* ===== WIDTH ANNOTATION ===== */
+.width-annotation {
+  text-align: center;
+  margin-top: 8px;
+  padding: 6px 0;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.width-annotation.bad {
+  color: #c0392b;
+}
+
+.width-annotation.good {
+  color: #27ae60;
+}
+
+/* ===== FOOTER ===== */
+.page-footer {
+  max-width: 1060px;
+  margin: 0 auto;
+  text-align: center;
+  color: #999;
+  font-size: 0.85rem;
+  padding-top: 24px;
+  border-top: 1px solid #ddd;
+}

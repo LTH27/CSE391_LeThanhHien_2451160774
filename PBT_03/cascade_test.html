@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C2 – Cascade Puzzle Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ===================================================
+           PUZZLE CSS – Exactly as specified in exercise C2
+           =================================================== */
+        body { font-size: 16px; color: #333; }
+        .container { font-size: 14px; }
+        .card { color: blue; }
+        .card .title { font-size: 20px; }
+        .card p { color: inherit; }
+        #featured .title { color: red; }
+        .highlight { color: green !important; }
+
+        /* ===================================================
+           PAGE LAYOUT & PRESENTATION STYLES
+           =================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #f0f2f5;
+            line-height: 1.6;
+        }
+
+        .page-wrapper {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 6px;
+        }
+
+        .page-header .subtitle {
+            font-size: 15px;
+            color: #6b7280;
+            font-weight: 400;
+        }
+
+        /* Section labels */
+        .section-label {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #6366f1;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            font-size: 14px;
+            color: #6b7280;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+
+        /* ---- CSS Rules Panel ---- */
+        .css-panel {
+            background: #1e1e2e;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 36px;
+            overflow-x: auto;
+        }
+
+        .css-panel pre {
+            font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+            font-size: 13.5px;
+            line-height: 1.75;
+            color: #cdd6f4;
+            white-space: pre;
+        }
+
+        .css-panel .kw   { color: #cba6f7; }
+        .css-panel .sel  { color: #89b4fa; }
+        .css-panel .prop { color: #94e2d5; }
+        .css-panel .val  { color: #fab387; }
+        .css-panel .imp  { color: #f38ba8; font-weight: 600; }
+        .css-panel .punc { color: #6c7086; }
+
+        /* ---- Puzzle Demo Area ---- */
+        .demo-section {
+            margin-bottom: 44px;
+        }
+
+        .demo-area {
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 32px;
+        }
+
+        /* Card presentation styles (don't override puzzle colors) */
+        .demo-area .card {
+            background: #fafbfc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .demo-area .card:last-child {
+            margin-bottom: 0;
+        }
+
+        .demo-area .card .title {
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .demo-area .card p {
+            margin-top: 4px;
+        }
+
+        .demo-area #featured {
+            background: #fffbeb;
+            border-color: #fcd34d;
+        }
+
+        /* Element indicator badges */
+        .element-badge {
+            display: inline-block;
+            font-family: 'Cascadia Code', 'Fira Code', monospace;
+            font-size: 10px;
+            font-weight: 600;
+            color: #6366f1 !important;
+            background: #eef2ff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        /* ---- Verification Table ---- */
+        .verification-section {
+            margin-top: 8px;
+        }
+
+        .table-wrapper {
+            background: #ffffff;
+            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            overflow: hidden;
+        }
+
+        .ref-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        .ref-table thead {
+            background: #f8fafc;
+        }
+
+        .ref-table th {
+            text-align: left;
+            padding: 14px 18px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #64748b;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .ref-table td {
+            padding: 16px 18px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+            color: #334155;
+            line-height: 1.55;
+        }
+
+        .ref-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .ref-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .el-name {
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .el-selector {
+            font-family: 'Cascadia Code', 'Fira Code', monospace;
+            font-size: 11.5px;
+            color: #6366f1;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .computed-val {
+            font-family: 'Cascadia Code', 'Fira Code', monospace;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .color-swatch {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            margin-right: 6px;
+            vertical-align: middle;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .cascade-reason {
+            font-size: 12.5px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .cascade-reason code {
+            font-family: 'Cascadia Code', 'Fira Code', monospace;
+            font-size: 11.5px;
+            background: #f1f5f9;
+            padding: 1px 5px;
+            border-radius: 3px;
+            color: #6366f1;
+        }
+
+        .cascade-tag {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-bottom: 4px;
+        }
+
+        .tag-important {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .tag-specificity {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .tag-inherit {
+            background: #f0fdf4;
+            color: #16a34a;
+        }
+
+        /* Footer note */
+        .footer-note {
+            text-align: center;
+            margin-top: 36px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        .footer-note span {
+            color: #cbd5e1;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+
+        <!-- ==================== HEADER ==================== -->
+        <header class="page-header">
+            <h1>Bài C2 – Cascade Puzzle</h1>
+            <p class="subtitle">Phân tích thứ tự ưu tiên trong CSS Cascade</p>
+        </header>
+
+        <!-- ==================== CSS RULES ==================== -->
+        <div>
+            <span class="section-label">Bước 1</span>
+            <h2 class="section-title">CSS Rules</h2>
+            <p class="section-desc">Dưới đây là bộ quy tắc CSS đang được áp dụng cho puzzle.</p>
+
+            <div class="css-panel">
+                <pre><span class="sel">body</span> <span class="punc">{</span> <span class="prop">font-size</span><span class="punc">:</span> <span class="val">16px</span><span class="punc">;</span> <span class="prop">color</span><span class="punc">:</span> <span class="val">#333</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="sel">.container</span> <span class="punc">{</span> <span class="prop">font-size</span><span class="punc">:</span> <span class="val">14px</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="sel">.card</span> <span class="punc">{</span> <span class="prop">color</span><span class="punc">:</span> <span class="val">blue</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="sel">.card .title</span> <span class="punc">{</span> <span class="prop">font-size</span><span class="punc">:</span> <span class="val">20px</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="sel">.card p</span> <span class="punc">{</span> <span class="prop">color</span><span class="punc">:</span> <span class="val">inherit</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="sel">#featured .title</span> <span class="punc">{</span> <span class="prop">color</span><span class="punc">:</span> <span class="val">red</span><span class="punc">;</span> <span class="punc">}</span>
+<span class="sel">.highlight</span> <span class="punc">{</span> <span class="prop">color</span><span class="punc">:</span> <span class="val">green</span> <span class="imp">!important</span><span class="punc">;</span> <span class="punc">}</span></pre>
+            </div>
+        </div>
+
+        <!-- ==================== PUZZLE HTML ==================== -->
+        <div class="demo-section">
+            <span class="section-label">Bước 2</span>
+            <h2 class="section-title">HTML Output</h2>
+            <p class="section-desc">Kết quả render thực tế — quan sát font-size và color của từng phần tử.</p>
+
+            <div class="demo-area">
+                <!-- === EXACT PUZZLE HTML === -->
+                <div class="container">
+                    <div class="card" id="featured">
+                        <span class="element-badge">#featured &gt; h2.title.highlight</span>
+                        <h2 class="title highlight">Sản phẩm A</h2>
+                        <span class="element-badge">#featured &gt; p</span>
+                        <p>Mô tả sản phẩm</p>
+                    </div>
+                    <div class="card">
+                        <span class="element-badge">.card &gt; h2.title</span>
+                        <h2 class="title">Sản phẩm B</h2>
+                        <span class="element-badge">.card &gt; p.highlight</span>
+                        <p class="highlight">Mô tả sản phẩm B</p>
+                    </div>
+                </div>
+                <!-- === END PUZZLE HTML === -->
+            </div>
+        </div>
+
+        <!-- ==================== VERIFICATION TABLE ==================== -->
+        <div class="verification-section">
+            <span class="section-label">Bước 3</span>
+            <h2 class="section-title">Bảng phân tích Cascade</h2>
+            <p class="section-desc">Giải thích chi tiết lý do mỗi phần tử nhận giá trị computed cuối cùng.</p>
+
+            <div class="table-wrapper">
+                <table class="ref-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Phần tử</th>
+                            <th style="width: 14%;">Font-size</th>
+                            <th style="width: 14%;">Color</th>
+                            <th>Giải thích Cascade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Row 1 -->
+                        <tr>
+                            <td>
+                                <span class="el-name">Sản phẩm A</span>
+                                <span class="el-selector">h2.title.highlight</span>
+                                <span class="el-selector">trong #featured</span>
+                            </td>
+                            <td>
+                                <span class="computed-val">20px</span>
+                            </td>
+                            <td>
+                                <span class="color-swatch" style="background: green;"></span>
+                                <span class="computed-val" style="color: green;">green</span>
+                            </td>
+                            <td class="cascade-reason">
+                                <span class="cascade-tag tag-important">!important</span><br>
+                                <strong>font-size:</strong> <code>.card .title</code> đặt <code>font-size: 20px</code> (specificity 0-2-0), ghi đè giá trị <code>14px</code> kế thừa từ <code>.container</code>.<br>
+                                <strong>color:</strong> Có 2 rule cạnh tranh — <code>#featured .title</code> (0-1-1-0 → red) và <code>.highlight</code> (0-0-1-0 → green). Dù <code>#featured .title</code> có specificity cao hơn, <code>.highlight</code> dùng <code>!important</code> nên <strong>green thắng</strong>.
+                            </td>
+                        </tr>
+                        <!-- Row 2 -->
+                        <tr>
+                            <td>
+                                <span class="el-name">Mô tả sản phẩm</span>
+                                <span class="el-selector">p</span>
+                                <span class="el-selector">trong #featured</span>
+                            </td>
+                            <td>
+                                <span class="computed-val">14px</span>
+                            </td>
+                            <td>
+                                <span class="color-swatch" style="background: blue;"></span>
+                                <span class="computed-val" style="color: blue;">blue</span>
+                            </td>
+                            <td class="cascade-reason">
+                                <span class="cascade-tag tag-inherit">Inherit</span><br>
+                                <strong>font-size:</strong> Không có rule nào đặt trực tiếp cho <code>p</code>. Kế thừa từ <code>.container</code> → <code>14px</code>.<br>
+                                <strong>color:</strong> <code>.card p</code> đặt <code>color: inherit</code>, buộc <code>p</code> kế thừa giá trị color từ phần tử cha <code>.card</code>. Vì <code>.card { color: blue }</code> → <strong>blue</strong>.
+                            </td>
+                        </tr>
+                        <!-- Row 3 -->
+                        <tr>
+                            <td>
+                                <span class="el-name">Sản phẩm B</span>
+                                <span class="el-selector">h2.title</span>
+                                <span class="el-selector">trong .card</span>
+                            </td>
+                            <td>
+                                <span class="computed-val">20px</span>
+                            </td>
+                            <td>
+                                <span class="color-swatch" style="background: blue;"></span>
+                                <span class="computed-val" style="color: blue;">blue</span>
+                            </td>
+                            <td class="cascade-reason">
+                                <span class="cascade-tag tag-specificity">Specificity</span><br>
+                                <strong>font-size:</strong> <code>.card .title</code> đặt <code>font-size: 20px</code> (specificity 0-2-0).<br>
+                                <strong>color:</strong> Không có rule nào đặt color trực tiếp cho <code>.card .title</code> (card này không có <code>id="featured"</code>). Phần tử <code>h2</code> không tự động kế thừa color vì user-agent stylesheet đặt color riêng, nhưng ở đây không có giá trị nào khác ngoài giá trị kế thừa từ <code>.card { color: blue }</code> → <strong>blue</strong>.
+                            </td>
+                        </tr>
+                        <!-- Row 4 -->
+                        <tr>
+                            <td>
+                                <span class="el-name">Mô tả sản phẩm B</span>
+                                <span class="el-selector">p.highlight</span>
+                                <span class="el-selector">trong .card</span>
+                            </td>
+                            <td>
+                                <span class="computed-val">14px</span>
+                            </td>
+                            <td>
+                                <span class="color-swatch" style="background: green;"></span>
+                                <span class="computed-val" style="color: green;">green</span>
+                            </td>
+                            <td class="cascade-reason">
+                                <span class="cascade-tag tag-important">!important</span><br>
+                                <strong>font-size:</strong> Kế thừa từ <code>.container</code> → <code>14px</code>.<br>
+                                <strong>color:</strong> Có 2 rule — <code>.card p</code> (0-1-1 → inherit → blue) và <code>.highlight</code> (0-1-0 → green !important). Dù <code>.card p</code> có specificity tương đương, <code>.highlight</code> dùng <code>!important</code> nên <strong>green thắng</strong>.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <p class="footer-note">
+            Bài C2 <span>·</span> CSS Cascade & Specificity <span>·</span> PBT_03_CSS_Core
+        </p>
+
+    </div>
+</body>
+</html>

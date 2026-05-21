@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài C1 — Debug Layout với Box Model</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="debug_layout.css">
+</head>
+<body>
+
+  <!-- ==================== PAGE HEADER ==================== -->
+  <header class="page-header">
+    <h1>🔍 Debug Layout: <span>Box Model</span> Problem</h1>
+    <p class="subtitle">
+      Bài tập C1 — Tìm hiểu tại sao layout bị vỡ khi sử dụng <code>float</code>
+      và cách khắc phục bằng <code>box-sizing</code> hoặc tính toán lại kích thước.
+    </p>
+  </header>
+
+  <!-- ======================================================
+       SECTION 1 — THE BROKEN LAYOUT
+       ====================================================== -->
+  <section class="section-card">
+    <!-- Header -->
+    <div class="section-header">
+      <h2>
+        ❌ Section 1: Layout Bị Vỡ
+        <span class="tag tag-broken">Broken</span>
+      </h2>
+      <p>Sử dụng <code>content-box</code> mặc định — padding và border được <strong>cộng thêm</strong> vào width.</p>
+    </div>
+
+    <!-- Error banner -->
+    <div class="banner banner-error">
+      ⚠️ Layout bị vỡ! Content bị đẩy xuống dòng mới vì tổng width vượt quá container.
+    </div>
+
+    <!-- CSS code -->
+    <div class="code-block">
+      <h3>📄 CSS gây lỗi</h3>
+      <pre><code><span class="sel">.container</span> { <span class="prop">width</span>: <span class="val">960px</span>; <span class="prop">margin</span>: <span class="val">0 auto</span>; }
+<span class="sel">.sidebar</span>  { <span class="prop">width</span>: <span class="val">300px</span>; <span class="prop">padding</span>: <span class="val">20px</span>; <span class="prop">border</span>: <span class="val">1px solid #ccc</span>; <span class="prop">float</span>: <span class="val">left</span>; }
+<span class="sel">.content</span>  { <span class="prop">width</span>: <span class="val">660px</span>; <span class="prop">padding</span>: <span class="val">30px</span>; <span class="prop">border</span>: <span class="val">1px solid #ccc</span>; <span class="prop">float</span>: <span class="val">left</span>; }</code></pre>
+    </div>
+
+    <!-- Math calculations -->
+    <div class="math-block">
+      <h3>📐 Tính toán kích thước thực tế</h3>
+      <div class="math-rows">
+        <div class="math-row">
+          <div class="label">Sidebar thực tế</div>
+          <div class="formula">300 + 20×2 + 1×2 = 342px</div>
+          <div class="result result-bad">width + padding + border</div>
+        </div>
+        <div class="math-row">
+          <div class="label">Content thực tế</div>
+          <div class="formula">660 + 30×2 + 1×2 = 722px</div>
+          <div class="result result-bad">width + padding + border</div>
+        </div>
+        <div class="math-row">
+          <div class="label">Tổng cộng</div>
+          <div class="formula">342 + 722 = 1064px</div>
+          <div class="result result-bad">❌ 1064px &gt; 960px — Vượt quá container!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo -->
+    <div class="demo-area">
+      <h3>👁️ Kết quả hiển thị</h3>
+      <div class="broken-container clearfix">
+        <div class="broken-sidebar">
+          <div class="sidebar-title">📂 Menu</div>
+          <ul class="sidebar-menu">
+            <li>Trang chủ</li>
+            <li>Giới thiệu</li>
+            <li>Sản phẩm</li>
+            <li>Dịch vụ</li>
+            <li>Liên hệ</li>
+          </ul>
+        </div>
+        <div class="broken-content">
+          <div class="content-title">📰 Bài viết mới nhất</div>
+          <div class="content-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+      </div>
+      <div class="width-annotation bad">↑ Content bị đẩy xuống — tổng 1064px vượt quá 960px container ↑</div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SECTION 2 — FIX 1: border-box
+       ====================================================== -->
+  <section class="section-card">
+    <!-- Header -->
+    <div class="section-header">
+      <h2>
+        ✅ Section 2: Fix 1 — <code>box-sizing: border-box</code>
+        <span class="tag tag-fixed">Fixed</span>
+      </h2>
+      <p>Padding và border được tính <strong>bên trong</strong> width → tổng width không thay đổi.</p>
+    </div>
+
+    <!-- Success banner -->
+    <div class="banner banner-success">
+      ✅ Layout hiển thị đúng! Sidebar và Content nằm cạnh nhau hoàn hảo.
+    </div>
+
+    <!-- CSS code -->
+    <div class="code-block">
+      <h3>📄 CSS đã sửa</h3>
+      <pre><code><span class="sel">.sidebar</span>, <span class="sel">.content</span> {
+  <span class="hl">box-sizing: border-box;</span>  <span class="cmt">/* ← Thêm dòng này */</span>
+}
+<span class="sel">.container</span> { <span class="prop">width</span>: <span class="val">960px</span>; <span class="prop">margin</span>: <span class="val">0 auto</span>; }
+<span class="sel">.sidebar</span>  { <span class="prop">width</span>: <span class="val">300px</span>; <span class="prop">padding</span>: <span class="val">20px</span>; <span class="prop">border</span>: <span class="val">1px solid #ccc</span>; <span class="prop">float</span>: <span class="val">left</span>; }
+<span class="sel">.content</span>  { <span class="prop">width</span>: <span class="val">660px</span>; <span class="prop">padding</span>: <span class="val">30px</span>; <span class="prop">border</span>: <span class="val">1px solid #ccc</span>; <span class="prop">float</span>: <span class="val">left</span>; }</code></pre>
+    </div>
+
+    <!-- Math calculations -->
+    <div class="math-block">
+      <h3>📐 Tính toán kích thước thực tế</h3>
+      <div class="math-rows">
+        <div class="math-row">
+          <div class="label">Sidebar thực tế</div>
+          <div class="formula">300px (bao gồm tất cả)</div>
+          <div class="result result-good">padding + border nằm trong 300px</div>
+        </div>
+        <div class="math-row">
+          <div class="label">Content thực tế</div>
+          <div class="formula">660px (bao gồm tất cả)</div>
+          <div class="result result-good">padding + border nằm trong 660px</div>
+        </div>
+        <div class="math-row">
+          <div class="label">Tổng cộng</div>
+          <div class="formula">300 + 660 = 960px</div>
+          <div class="result result-good">✅ 960px = 960px — Vừa khít container!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo -->
+    <div class="demo-area">
+      <h3>👁️ Kết quả hiển thị</h3>
+      <div class="fix1-container clearfix">
+        <div class="fix1-sidebar">
+          <div class="sidebar-title">📂 Menu</div>
+          <ul class="sidebar-menu">
+            <li>Trang chủ</li>
+            <li>Giới thiệu</li>
+            <li>Sản phẩm</li>
+            <li>Dịch vụ</li>
+            <li>Liên hệ</li>
+          </ul>
+        </div>
+        <div class="fix1-content">
+          <div class="content-title">📰 Bài viết mới nhất</div>
+          <div class="content-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+      </div>
+      <div class="width-annotation good">↑ Sidebar (300px) + Content (660px) = 960px — Vừa khít! ↑</div>
+    </div>
+  </section>
+
+  <!-- ======================================================
+       SECTION 3 — FIX 2: Recalculated widths
+       ====================================================== -->
+  <section class="section-card">
+    <!-- Header -->
+    <div class="section-header">
+      <h2>
+        ✅ Section 3: Fix 2 — Tính toán lại width
+        <span class="tag tag-fixed">Fixed</span>
+      </h2>
+      <p>Giữ <code>content-box</code> mặc định nhưng trừ đi padding và border từ width ban đầu.</p>
+    </div>
+
+    <!-- Success banner -->
+    <div class="banner banner-success">
+      ✅ Layout hiển thị đúng! Không cần border-box, chỉ cần tính toán chính xác.
+    </div>
+
+    <!-- CSS code -->
+    <div class="code-block">
+      <h3>📄 CSS đã sửa</h3>
+      <pre><code><span class="sel">.container</span> { <span class="prop">width</span>: <span class="val">960px</span>; <span class="prop">margin</span>: <span class="val">0 auto</span>; }
+<span class="sel">.sidebar</span>  { <span class="prop">width</span>: <span class="hl">258px</span>; <span class="prop">padding</span>: <span class="val">20px</span>; <span class="prop">border</span>: <span class="val">1px solid #ccc</span>; <span class="prop">float</span>: <span class="val">left</span>; }
+              <span class="cmt">/* 300 - 20×2 - 1×2 = 258px */</span>
+<span class="sel">.content</span>  { <span class="prop">width</span>: <span class="hl">598px</span>; <span class="prop">padding</span>: <span class="val">30px</span>; <span class="prop">border</span>: <span class="val">1px solid #ccc</span>; <span class="prop">float</span>: <span class="val">left</span>; }
+              <span class="cmt">/* 660 - 30×2 - 1×2 = 598px */</span></code></pre>
+    </div>
+
+    <!-- Math calculations -->
+    <div class="math-block">
+      <h3>📐 Tính toán kích thước thực tế</h3>
+      <div class="math-rows">
+        <div class="math-row">
+          <div class="label">Sidebar thực tế</div>
+          <div class="formula">258 + 20×2 + 1×2 = 300px</div>
+          <div class="result result-good">Đúng mục tiêu 300px ban đầu</div>
+        </div>
+        <div class="math-row">
+          <div class="label">Content thực tế</div>
+          <div class="formula">598 + 30×2 + 1×2 = 660px</div>
+          <div class="result result-good">Đúng mục tiêu 660px ban đầu</div>
+        </div>
+        <div class="math-row">
+          <div class="label">Tổng cộng</div>
+          <div class="formula">300 + 660 = 960px</div>
+          <div class="result result-good">✅ 960px = 960px — Vừa khít container!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo -->
+    <div class="demo-area">
+      <h3>👁️ Kết quả hiển thị</h3>
+      <div class="fix2-container clearfix">
+        <div class="fix2-sidebar">
+          <div class="sidebar-title">📂 Menu</div>
+          <ul class="sidebar-menu">
+            <li>Trang chủ</li>
+            <li>Giới thiệu</li>
+            <li>Sản phẩm</li>
+            <li>Dịch vụ</li>
+            <li>Liên hệ</li>
+          </ul>
+        </div>
+        <div class="fix2-content">
+          <div class="content-title">📰 Bài viết mới nhất</div>
+          <div class="content-text">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+          </div>
+        </div>
+      </div>
+      <div class="width-annotation good">↑ Sidebar (258+42=300px) + Content (598+62=660px) = 960px — Vừa khít! ↑</div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="page-footer">
+    Bài tập C1 — CSS Box Model Debug &nbsp;|&nbsp; PBT 03 CSS Core
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài tập B2 — Box Model Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="boxmodel.css">
+</head>
+<body>
+
+  <header class="page-header">
+    <h1>📦 Box Model Lab</h1>
+    <p class="subtitle">Bài tập B2 — So sánh <code>content-box</code> và <code>border-box</code> &amp; Dàn trang 3 cột</p>
+  </header>
+
+  <section class="section">
+    <h2 class="section-title">
+      <span class="badge">Phần 1</span>
+      So sánh content-box và border-box
+    </h2>
+    <p class="section-desc">
+      Hai hộp bên dưới đều được khai báo <code>width: 300px</code>, <code>padding: 20px</code>,
+      <code>border: 5px solid</code>. Hãy quan sát kích thước thực tế khác nhau như thế nào.
+    </p>
+
+    <div class="comparison-container">
+
+      <div class="box-card">
+        <div class="label-wrapper">
+          <span class="label label-content">content-box (mặc định)</span>
+        </div>
+        <div class="demo-box content-box-demo">
+          <h3>🟠 Box 1 — content-box</h3>
+          <div class="measurement">
+            <strong>width (CSS):</strong> 300px<br>
+            <strong>padding:</strong> 20px × 2 = 40px<br>
+            <strong>border:</strong> 5px × 2 = 10px<br>
+            ─────────────────────<br>
+            <span class="result">Tổng chiều rộng thực tế: 350px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="box-card">
+        <div class="label-wrapper">
+          <span class="label label-border">border-box</span>
+        </div>
+        <div class="demo-box border-box-demo">
+          <h3>🟢 Box 2 — border-box</h3>
+          <div class="measurement">
+            <strong>width (CSS):</strong> 300px<br>
+            <strong>padding:</strong> 20px × 2 = 40px<br>
+            <strong>border:</strong> 5px × 2 = 10px<br>
+            ─────────────────────<br>
+            <span class="result">Tổng chiều rộng thực tế: 300px</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ruler-section">
+      <h4>📏 Thước đo quy chiếu</h4>
+
+      <div class="ruler-container">
+        <div class="ruler-track">
+          <div class="ruler-fill-350"></div>
+          <div class="ruler-fill-300"></div>
+        </div>
+
+        <div class="ruler-marks">
+          <div class="ruler-mark" style="left: 0;">
+            <span class="tick"></span>
+            <span>0</span>
+          </div>
+          <div class="ruler-mark" style="left: 100px;">
+            <span class="tick"></span>
+            <span>100px</span>
+          </div>
+          <div class="ruler-mark" style="left: 200px;">
+            <span class="tick"></span>
+            <span>200px</span>
+          </div>
+          <div class="ruler-mark highlight-300" style="left: 300px;">
+            <span class="tick"></span>
+            <span>300px ✓</span>
+          </div>
+          <div class="ruler-mark highlight-350" style="left: 350px;">
+            <span class="tick"></span>
+            <span>350px ⚠</span>
+          </div>
+          <div class="ruler-mark" style="left: 400px;">
+            <span class="tick"></span>
+            <span>400px</span>
+          </div>
+          <div class="ruler-mark" style="left: 500px;">
+            <span class="tick"></span>
+            <span>500px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ruler-legend">
+        <div class="ruler-legend-item">
+          <div class="ruler-legend-swatch swatch-border-box"></div>
+          <span><strong>border-box</strong> — vẫn đúng 300px</span>
+        </div>
+        <div class="ruler-legend-item">
+          <div class="ruler-legend-swatch swatch-content-box"></div>
+          <span><strong>content-box</strong> — phình ra 350px</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="explanation">
+      <h4>💡 Giải thích sự khác biệt</h4>
+      <p>
+        Với <code>box-sizing: content-box</code> (mặc định), thuộc tính <code>width</code>
+        chỉ áp dụng cho <strong>phần nội dung</strong>. Padding và border được
+        <strong>cộng thêm</strong> vào bên ngoài, làm tổng kích thước thực tế lớn hơn.
+      </p>
+      <p>
+        Với <code>box-sizing: border-box</code>, thuộc tính <code>width</code> bao gồm
+        <strong>cả padding và border</strong>. Phần nội dung sẽ tự động co lại để tổng
+        kích thước vẫn đúng bằng giá trị <code>width</code> đã khai báo.
+      </p>
+      <ul>
+        <li><strong>content-box:</strong> Tổng = width + padding trái + padding phải + border trái + border phải = 300 + 20 + 20 + 5 + 5 = <strong>350px</strong></li>
+        <li><strong>border-box:</strong> Tổng = width = <strong>300px</strong> (nội dung thực = 300 − 40 − 10 = 250px)</li>
+      </ul>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <section class="section">
+    <h2 class="section-title">
+      <span class="badge">Phần 2</span>
+      Dàn trang 3 cột với Float
+    </h2>
+    <p class="section-desc">
+      Container rộng <code>1000px</code>, canh giữa. Ba cột sử dụng <code>float: left</code>
+      và <code>box-sizing: border-box</code> để tổng chiều rộng luôn = 1000px.
+    </p>
+
+    <div class="layout-outer">
+      <div class="layout-container">
+
+        <div class="width-annotation">◀── Container: 1000px ──▶</div>
+
+        <div class="clearfix">
+
+          <div class="col col-left">
+            <h3>📌 Sidebar trái (250px)</h3>
+            <ul>
+              <li><a href="#">Trang chủ</a></li>
+              <li><a href="#">Giới thiệu</a></li>
+              <li><a href="#">Dịch vụ</a></li>
+              <li><a href="#">Bài viết</a></li>
+              <li><a href="#">Liên hệ</a></li>
+              <li><a href="#">Câu hỏi thường gặp</a></li>
+            </ul>
+            <p style="margin-top: 14px; font-size: 0.78rem; color: #999;">
+              <strong>CSS:</strong><br>
+              width: 250px<br>
+              padding: 15px<br>
+              box-sizing: border-box
+            </p>
+          </div>
+
+          <div class="col col-center">
+            <h3>📝 Nội dung chính (500px)</h3>
+            <p>
+              Đây là cột nội dung chính của trang web, chiếm 500px trong tổng
+              layout 1000px. Nhờ sử dụng <code>box-sizing: border-box</code>,
+              padding 20px ở mỗi bên <strong>không</strong> làm cột này vượt quá 500px.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+              ad minim veniam, quis nostrud exercitation ullamco laboris.
+            </p>
+            <p>
+              Phần nội dung thực tế sẽ rộng: 500 − 20 − 20 = <strong>460px</strong>.
+              Đây chính là lợi ích của <code>border-box</code> khi dàn trang — ta
+              chỉ cần quan tâm đến con số 500px mà không lo phép tính phức tạp.
+            </p>
+            <p style="font-size: 0.78rem; color: #999; margin-top: 8px;">
+              <strong>CSS:</strong> width: 500px &middot; padding: 20px &middot; box-sizing: border-box
+            </p>
+          </div>
+
+          <div class="col col-right">
+            <h3>📢 Quảng cáo (250px)</h3>
+            <div class="ad-placeholder">
+              🖼️ Banner QC<br>220 × 120
+            </div>
+            <div class="ad-placeholder">
+              🎯 Khuyến mãi<br>Giảm 50%
+            </div>
+            <p style="margin-top: 10px; font-size: 0.78rem; color: #999;">
+              <strong>CSS:</strong><br>
+              width: 250px<br>
+              padding: 15px<br>
+              box-sizing: border-box
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="math-panel">
+      <h4>🧮 Bảng tính kích thước (border-box)</h4>
+
+      <div class="math-row">
+        <span class="col-name">Sidebar trái</span>
+        <span class="formula">width: 250px (bao gồm padding 15px × 2)</span>
+        <span class="equals">= 250px</span>
+      </div>
+      <div class="math-row">
+        <span class="col-name">Nội dung chính</span>
+        <span class="formula">width: 500px (bao gồm padding 20px × 2)</span>
+        <span class="equals">= 500px</span>
+      </div>
+      <div class="math-row">
+        <span class="col-name">Sidebar phải</span>
+        <span class="formula">width: 250px (bao gồm padding 15px × 2)</span>
+        <span class="equals">= 250px</span>
+      </div>
+
+      <div class="math-total">
+        <span>250 + 500 + 250</span>
+        <span>=</span>
+        <span>1000px ✅ khớp container!</span>
+      </div>
+    </div>
+
+    <div class="explanation" style="margin-top: 24px;">
+      <h4>💡 Tại sao cần border-box cho layout?</h4>
+      <p>
+        Nếu dùng <code>content-box</code> (mặc định), ba cột sẽ có tổng chiều rộng:
+      </p>
+      <ul>
+        <li>Trái: 250 + 15×2 = <strong>280px</strong></li>
+        <li>Giữa: 500 + 20×2 = <strong>540px</strong></li>
+        <li>Phải: 250 + 15×2 = <strong>280px</strong></li>
+        <li>⚠️ Tổng = 280 + 540 + 280 = <strong>1100px</strong> → tràn container!</li>
+      </ul>
+      <p style="margin-top: 10px;">
+        Với <code>border-box</code>, padding được tính <em>bên trong</em> width nên
+        tổng luôn khớp <strong>1000px</strong>. Đây là lý do hầu hết các dự án thực tế
+        đều dùng <code>*, *::before, *::after { box-sizing: border-box; }</code>.
+      </p>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    Bài tập B2 — Box Model Lab &middot; Sử dụng <code>float</code> và <code>box-sizing</code>
+  </footer>
+
+</body>
+</html>

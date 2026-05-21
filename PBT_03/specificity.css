@@ -1,0 +1,365 @@
+/* ============================================
+   BÀI TẬP B3 — CSS Specificity (Độ ưu tiên)
+   10 quy tắc nhắm vào cùng một phần tử,
+   sắp xếp từ specificity THẤP → CAO
+   ============================================ */
+
+/* Rule 1  — Specificity: (0, 0, 0) */
+* { color: #808080; }  /* gray */
+
+/* Rule 2  — Specificity: (0, 0, 1) */
+p { color: #000000; }  /* black */
+
+/* Rule 3  — Specificity: (0, 1, 0) */
+.text { color: #0066cc; }  /* blue */
+
+/* Rule 4  — Specificity: (0, 1, 0) */
+.highlight { color: #ff8c00; }  /* dark orange */
+
+/* Rule 5  — Specificity: (0, 1, 1) */
+p.text { color: #008080; }  /* teal */
+
+/* Rule 6  — Specificity: (0, 2, 0) */
+.text.highlight { color: #800080; }  /* purple */
+
+/* Rule 7  — Specificity: (0, 2, 1) */
+p.text.highlight { color: #8b4513; }  /* saddle brown */
+
+/* Rule 8  — Specificity: (1, 0, 0) */
+#demo { color: #dc143c; }  /* crimson */
+
+/* Rule 9  — Specificity: (1, 1, 0) */
+#demo.text { color: #cc0066; }  /* deep pink */
+
+/* Rule 10 — Specificity: (1, 2, 0) */
+#demo.text.highlight { color: #ff00ff; }  /* magenta */
+
+
+/* ============================================
+   PAGE LAYOUT & STYLING
+   ============================================ */
+
+/* --- Reset & Base --- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: #e0e0e0;
+    line-height: 1.6;
+    padding: 2rem 1rem 4rem;
+}
+
+/* --- Page Header --- */
+.page-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #ff6ec7, #7873f5, #4adede);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.35rem;
+}
+
+.page-header .subtitle {
+    font-size: 1rem;
+    color: #9a97b0;
+    font-weight: 400;
+}
+
+/* --- Demo Card (the target element) --- */
+.demo-card {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.demo-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6ec7, #7873f5, #4adede);
+}
+
+.demo-card .label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #7873f5;
+    background: rgba(120, 115, 245, 0.12);
+    padding: 0.3rem 0.9rem;
+    border-radius: 20px;
+    margin-bottom: 1.5rem;
+}
+
+/* The target element — its color comes from specificity rules above */
+#demo.text.highlight {
+    font-size: 56px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin: 0.5rem 0;
+    /* color is set by specificity rules — do NOT set color here */
+}
+
+.demo-card .winner-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ff00ff;
+    background: rgba(255, 0, 255, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 0, 255, 0.25);
+}
+
+.demo-card .code-snippet {
+    margin-top: 1.2rem;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.8rem;
+    color: #c5c3d6;
+    overflow-x: auto;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.demo-card .code-snippet span.tag { color: #ff6ec7; }
+.demo-card .code-snippet span.attr { color: #4adede; }
+.demo-card .code-snippet span.val { color: #f5c542; }
+.demo-card .code-snippet span.txt { color: #e0e0e0; }
+
+/* --- Reference Table Card --- */
+.reference-card {
+    max-width: 860px;
+    margin: 0 auto 3rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.reference-card h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.reference-card h2 .icon {
+    font-size: 1.3rem;
+}
+
+/* Table */
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.spec-table thead th {
+    text-align: left;
+    padding: 0.75rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #9a97b0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spec-table tbody tr {
+    transition: background 0.2s;
+}
+
+.spec-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.spec-table tbody td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: middle;
+}
+
+.spec-table .rule-num {
+    font-weight: 700;
+    color: #7873f5;
+    font-size: 0.8rem;
+    width: 40px;
+}
+
+.spec-table .selector-cell {
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.82rem;
+    color: #4adede;
+}
+
+.spec-table .color-name {
+    color: #c5c3d6;
+}
+
+.spec-table .swatch {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    vertical-align: middle;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.spec-table .specificity-cell {
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.8rem;
+    color: #f5c542;
+}
+
+.spec-table tbody tr:last-child {
+    background: rgba(255, 0, 255, 0.06);
+}
+
+.spec-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.spec-table tbody tr.winner-row {
+    background: rgba(255, 0, 255, 0.08);
+    position: relative;
+}
+
+.spec-table tbody tr.winner-row td:first-child::before {
+    content: '👑';
+    position: absolute;
+    left: -1.6rem;
+    font-size: 0.9rem;
+}
+
+/* --- Explanation Card --- */
+.explanation-card {
+    max-width: 860px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.explanation-card h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.explanation-card h2 .icon {
+    font-size: 1.3rem;
+}
+
+.explanation-card .answer-box {
+    background: rgba(255, 0, 255, 0.08);
+    border: 1px solid rgba(255, 0, 255, 0.2);
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.explanation-card .answer-box strong {
+    color: #ff00ff;
+}
+
+.explanation-card .answer-box .big-color {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ff00ff;
+    margin: 0.3rem 0;
+}
+
+.explanation-card .details p {
+    margin-bottom: 0.75rem;
+    color: #c5c3d6;
+    font-size: 0.92rem;
+}
+
+.explanation-card .details strong {
+    color: #ffffff;
+}
+
+.explanation-card .details code {
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.82rem;
+    background: rgba(0, 0, 0, 0.35);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    color: #4adede;
+}
+
+.explanation-card .formula {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+    font-size: 0.82rem;
+    color: #f5c542;
+    border-left: 3px solid #7873f5;
+}
+
+.explanation-card .formula .label-text {
+    color: #9a97b0;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 0.4rem;
+}
+
+/* --- Footer --- */
+.page-footer {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.75rem;
+    color: #5a5775;
+}

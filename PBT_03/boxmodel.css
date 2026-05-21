@@ -1,0 +1,585 @@
+/* ============================================
+   BOX MODEL LAB — CSS
+   Exercise B2: content-box vs border-box
+   + 3-column float layout
+   ============================================ */
+
+/* --- Reset & Base --- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f0f2f5;
+  color: #1a1a2e;
+  line-height: 1.6;
+  padding: 40px 20px 80px;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+/* --- Page Header --- */
+.page-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.page-header h1 {
+  font-size: 2.2rem;
+  color: #16213e;
+  margin-bottom: 8px;
+}
+
+.page-header .subtitle {
+  font-size: 1.05rem;
+  color: #6c757d;
+  font-weight: 400;
+}
+
+/* --- Section Wrapper --- */
+.section {
+  max-width: 1080px;
+  margin: 0 auto 60px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  padding: 40px 48px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #16213e;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title .badge {
+  display: inline-block;
+  background: #6c63ff;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.section-desc {
+  color: #6c757d;
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+}
+
+/* --- Divider --- */
+.divider {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ddd, transparent);
+  margin: 50px auto;
+  max-width: 600px;
+}
+
+/* ============================================
+   PART 1 — content-box vs border-box
+   ============================================ */
+
+.comparison-container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+/* --- Box Card Wrapper --- */
+.box-card {
+  flex: 0 0 auto;
+}
+
+.box-card .label {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+  padding: 6px 16px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.box-card .label-content {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.box-card .label-border {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.box-card .label-wrapper {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+/* --- Demo Boxes --- */
+.demo-box {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid;
+  min-height: 140px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.demo-box.content-box-demo {
+  box-sizing: content-box;
+  background-color: #fff8e1;
+  border-color: #ff9800;
+}
+
+.demo-box.border-box-demo {
+  box-sizing: border-box;
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+}
+
+.demo-box h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.demo-box .measurement {
+  font-size: 0.82rem;
+  line-height: 1.8;
+  font-family: 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.demo-box .measurement strong {
+  color: #333;
+}
+
+.demo-box .measurement .result {
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.content-box-demo .measurement .result {
+  background: #ffe0b2;
+  color: #e65100;
+}
+
+.border-box-demo .measurement .result {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+/* --- Ruler / Scale --- */
+.ruler-section {
+  margin-top: 36px;
+  margin-bottom: 28px;
+}
+
+.ruler-section h4 {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.ruler-container {
+  position: relative;
+  padding: 0 0 8px;
+  max-width: 700px;
+}
+
+.ruler-track {
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+}
+
+.ruler-fill-300 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100%;
+  background: linear-gradient(90deg, #6c63ff, #48c6ef);
+  border-radius: 4px;
+}
+
+.ruler-fill-350 {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 350px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    #ff9800 0px,
+    #ff9800 4px,
+    transparent 4px,
+    transparent 8px
+  );
+  border-radius: 4px;
+  opacity: 0.35;
+}
+
+.ruler-marks {
+  position: relative;
+  height: 40px;
+  margin-top: 4px;
+}
+
+.ruler-mark {
+  position: absolute;
+  top: 0;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+.ruler-mark .tick {
+  display: block;
+  width: 2px;
+  height: 12px;
+  background: #999;
+  margin: 0 auto 4px;
+}
+
+.ruler-mark span:last-child {
+  font-size: 0.72rem;
+  color: #666;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ruler-mark.highlight-300 .tick {
+  background: #6c63ff;
+  height: 16px;
+  width: 3px;
+}
+
+.ruler-mark.highlight-300 span:last-child {
+  color: #6c63ff;
+  font-weight: 700;
+}
+
+.ruler-mark.highlight-350 .tick {
+  background: #e65100;
+  height: 16px;
+  width: 3px;
+}
+
+.ruler-mark.highlight-350 span:last-child {
+  color: #e65100;
+  font-weight: 700;
+}
+
+/* --- Ruler Legend --- */
+.ruler-legend {
+  display: flex;
+  gap: 24px;
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+.ruler-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ruler-legend-swatch {
+  width: 20px;
+  height: 8px;
+  border-radius: 3px;
+}
+
+.swatch-border-box {
+  background: linear-gradient(90deg, #6c63ff, #48c6ef);
+}
+
+.swatch-content-box {
+  background: #ff9800;
+  opacity: 0.5;
+}
+
+/* --- Explanation Panel --- */
+.explanation {
+  background: #f8f9fa;
+  border-left: 4px solid #6c63ff;
+  padding: 20px 24px;
+  border-radius: 0 10px 10px 0;
+  margin-top: 10px;
+}
+
+.explanation h4 {
+  font-size: 1rem;
+  color: #16213e;
+  margin-bottom: 10px;
+}
+
+.explanation p {
+  font-size: 0.9rem;
+  color: #495057;
+  margin-bottom: 8px;
+}
+
+.explanation code {
+  background: #e9ecef;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: #d63384;
+  font-family: 'Courier New', monospace;
+}
+
+.explanation ul {
+  margin: 8px 0 0 20px;
+  font-size: 0.88rem;
+  color: #495057;
+}
+
+.explanation ul li {
+  margin-bottom: 4px;
+}
+
+/* ============================================
+   PART 2 — 3-column float layout
+   ============================================ */
+
+.layout-outer {
+  background: #eef1f6;
+  border: 2px dashed #b0bec5;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 10px;
+}
+
+.layout-container {
+  width: 1000px;
+  margin: 0 auto;
+  background: #dfe6ed;
+  border: 2px solid #90a4ae;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* --- Width annotation bar --- */
+.width-annotation {
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #546e7a;
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+  background: #cfd8dc;
+  border-bottom: 1px solid #b0bec5;
+  text-transform: uppercase;
+}
+
+/* --- Columns --- */
+.col {
+  float: left;
+  box-sizing: border-box;
+  min-height: 360px;
+}
+
+.col-left {
+  width: 250px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-right: 1px solid #e0e0e0;
+}
+
+.col-center {
+  width: 500px;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+.col-right {
+  width: 250px;
+  background-color: #f5f5f5;
+  padding: 15px;
+  border-left: 1px solid #e0e0e0;
+}
+
+/* --- Clearfix --- */
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* --- Column Content Styling --- */
+.col h3 {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+  color: #263238;
+  padding-bottom: 8px;
+  border-bottom: 2px solid;
+}
+
+.col-left h3 {
+  border-color: #7e57c2;
+}
+
+.col-center h3 {
+  border-color: #42a5f5;
+}
+
+.col-right h3 {
+  border-color: #26a69a;
+}
+
+.col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.col ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 0.88rem;
+  color: #455a64;
+}
+
+.col ul li:last-child {
+  border-bottom: none;
+}
+
+.col ul li a {
+  color: #5c6bc0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.col ul li a:hover {
+  color: #283593;
+  text-decoration: underline;
+}
+
+.col p {
+  font-size: 0.88rem;
+  color: #546e7a;
+  margin-bottom: 12px;
+  line-height: 1.7;
+}
+
+/* --- Ad placeholder boxes --- */
+.ad-placeholder {
+  background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+  border: 1px dashed #9fa8da;
+  border-radius: 8px;
+  padding: 24px 12px;
+  text-align: center;
+  margin-bottom: 14px;
+  color: #5c6bc0;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* --- Math Calculation Panel --- */
+.math-panel {
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-top: 28px;
+}
+
+.math-panel h4 {
+  font-size: 0.95rem;
+  color: #37474f;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.math-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-family: 'Courier New', monospace;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.math-row:nth-child(odd) {
+  background: #f5f5f5;
+}
+
+.math-row .col-name {
+  font-weight: 700;
+  min-width: 140px;
+  color: #37474f;
+}
+
+.math-row .formula {
+  color: #616161;
+  flex: 1;
+  text-align: center;
+}
+
+.math-row .equals {
+  font-weight: 700;
+  color: #2e7d32;
+  min-width: 60px;
+  text-align: right;
+}
+
+.math-total {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 12px 14px;
+  margin-top: 6px;
+  background: #e8f5e9;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #2e7d32;
+  font-family: 'Courier New', monospace;
+  gap: 10px;
+}
+
+/* --- Footer Note --- */
+.page-footer {
+  text-align: center;
+  margin-top: 50px;
+  color: #adb5bd;
+  font-size: 0.82rem;
+}
+
+.page-footer code {
+  background: #e9ecef;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.8em;
+  color: #868e96;
+}

@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Selectors – Bài A2 Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ──────────────────────────────────────────────
+           0.  RESET & BASE
+           ────────────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0f111a;
+            color: #c9d1d9;
+            line-height: 1.65;
+            padding: 2rem 1rem 4rem;
+        }
+
+        /* ──────────────────────────────────────────────
+           PAGE HEADER
+           ────────────────────────────────────────────── */
+        .page-title {
+            max-width: 880px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+        }
+        .page-title h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #6ee7b7, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: .5rem;
+            /* Override selector 1 for THIS h1 only */
+            outline: none !important;
+            background-color: transparent !important;
+        }
+        .page-title p {
+            font-size: .95rem;
+            color: #8b949e;
+        }
+
+        /* ──────────────────────────────────────────────
+           DEMO CARD (wraps #app)
+           ────────────────────────────────────────────── */
+        .demo-card {
+            max-width: 880px;
+            margin: 0 auto 3rem;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .demo-card-header {
+            padding: .75rem 1.25rem;
+            background: #1c2129;
+            border-bottom: 1px solid #30363d;
+            font-size: .8rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #8b949e;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .demo-card-header span { opacity: .6; }
+        .demo-card-body { padding: 1.5rem 2rem 2rem; }
+
+        /* ──────────────────────────────────────────────
+           LEGEND STRIP (color key above the demo)
+           ────────────────────────────────────────────── */
+        .legend {
+            max-width: 880px;
+            margin: 0 auto 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem .75rem;
+            font-size: .78rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+        }
+        .legend-swatch {
+            width: 14px; height: 14px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* =============================================
+           SELECTOR HIGHLIGHTS  — each gets a UNIQUE color
+           ============================================= */
+
+        /*  1.  h1  →  coral / salmon background  */
+        h1 {
+            background-color: rgba(255, 111, 97, 0.25);
+            outline: 2px dashed #ff6f61;
+            outline-offset: 3px;
+        }
+
+        /*  2.  .price  →  lime / green background  */
+        .price {
+            background-color: rgba(102, 255, 102, 0.18);
+            outline: 2px dashed #66ff66;
+            outline-offset: 2px;
+        }
+
+        /*  3.  #app header  →  sky-blue outline  */
+        #app header {
+            background-color: rgba(56, 189, 248, 0.10);
+            outline: 2px solid #38bdf8;
+            outline-offset: 4px;
+        }
+
+        /*  4.  nav a:first-child  →  gold / amber  */
+        nav a:first-child {
+            background-color: rgba(251, 191, 36, 0.30);
+            outline: 2px dashed #fbbf24;
+            outline-offset: 2px;
+        }
+
+        /*  5.  .product.featured h2  →  magenta / pink  */
+        .product.featured h2 {
+            background-color: rgba(236, 72, 153, 0.25);
+            outline: 2px dashed #ec4899;
+            outline-offset: 3px;
+        }
+
+        /*  6.  article > p  →  violet / purple  */
+        article > p {
+            background-color: rgba(167, 139, 250, 0.18);
+            outline: 2px dashed #a78bfa;
+            outline-offset: 2px;
+        }
+
+        /*  7.  a[href="/"]  →  teal / cyan  */
+        a[href="/"] {
+            background-color: rgba(45, 212, 191, 0.28);
+            outline: 2px solid #2dd4bf;
+            outline-offset: 2px;
+        }
+
+        /*  8.  .top-bar.dark h1  →  bright orange  */
+        .top-bar.dark h1 {
+            background-color: rgba(251, 146, 60, 0.30);
+            outline: 2px solid #fb923c;
+            outline-offset: 5px;
+        }
+
+        /* ──────────────────────────────────────────────
+           STYLING FOR THE SHOP HTML INSIDE #app
+           ────────────────────────────────────────────── */
+        #app { position: relative; }
+
+        #app .top-bar {
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+        #app .top-bar.dark {
+            background: #21262d;
+        }
+        #app .top-bar h1 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f0f6fc;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+        #app nav {
+            display: flex;
+            gap: .75rem;
+        }
+        #app nav a {
+            text-decoration: none;
+            color: #8b949e;
+            font-weight: 500;
+            font-size: .9rem;
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: color .2s;
+        }
+        #app nav a.active { color: #58a6ff; }
+        #app nav a:hover { color: #f0f6fc; }
+
+        #app main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.25rem;
+        }
+        #app .product {
+            background: #21262d;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+        }
+        #app .product.featured {
+            border-color: #ec4899;
+        }
+        #app .product h2 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f0f6fc;
+            margin-bottom: .5rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        #app .product .price {
+            font-weight: 700;
+            color: #6ee7b7;
+            margin-bottom: .35rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        #app .product p {
+            font-size: .9rem;
+            color: #8b949e;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* ──────────────────────────────────────────────
+           REFERENCE TABLE
+           ────────────────────────────────────────────── */
+        .ref-section {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .ref-section h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f0f6fc;
+            margin-bottom: 1rem;
+            /* override selector 1 highlight */
+            background-color: transparent !important;
+            outline: none !important;
+        }
+        .ref-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .88rem;
+        }
+        .ref-table thead th {
+            text-align: left;
+            padding: .65rem 1rem;
+            background: #1c2129;
+            color: #8b949e;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: .75rem;
+            letter-spacing: .05em;
+            border-bottom: 2px solid #30363d;
+        }
+        .ref-table tbody td {
+            padding: .7rem 1rem;
+            border-bottom: 1px solid #21262d;
+            vertical-align: top;
+        }
+        .ref-table tbody tr:last-child td { border-bottom: none; }
+        .ref-table tbody tr:hover { background: rgba(56,189,248,.04); }
+
+        .ref-table code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .82rem;
+            background: #21262d;
+            padding: 2px 7px;
+            border-radius: 4px;
+            color: #79c0ff;
+            white-space: nowrap;
+        }
+        .ref-table .swatch {
+            display: inline-block;
+            width: 12px; height: 12px;
+            border-radius: 3px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+        .selector-type {
+            display: inline-block;
+            font-size: .72rem;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .type-element    { background: #1e3a3a; color: #6ee7b7; }
+        .type-class      { background: #1e2d3d; color: #58a6ff; }
+        .type-descendant { background: #2d1e3d; color: #d2a8ff; }
+        .type-pseudo     { background: #3d3a1e; color: #fbbf24; }
+        .type-compound   { background: #3d1e2d; color: #f778ba; }
+        .type-child      { background: #2d1e3d; color: #a78bfa; }
+        .type-attribute  { background: #1e3d2d; color: #2dd4bf; }
+
+        /* ──────────────────────────────────────────────
+           RESPONSIVE
+           ────────────────────────────────────────────── */
+        @media (max-width: 600px) {
+            .demo-card-body { padding: 1rem; }
+            #app .top-bar { flex-direction: column; gap: .75rem; text-align: center; }
+            #app main { grid-template-columns: 1fr; }
+            .legend { font-size: .7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════
+         PAGE TITLE
+         ════════════════════════════════════════════════ -->
+    <div class="page-title">
+        <h1>🎯 CSS Selector Verification — Bài A2</h1>
+        <p>Mỗi selector được highlight bằng một màu riêng biệt để dễ dàng kiểm chứng kết quả.</p>
+    </div>
+
+    <!-- ════════════════════════════════════════════════
+         COLOR LEGEND
+         ════════════════════════════════════════════════ -->
+    <div class="legend">
+        <span class="legend-item"><span class="legend-swatch" style="background:#ff6f61"></span>h1</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#66ff66"></span>.price</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#38bdf8"></span>#app header</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#fbbf24"></span>nav a:first-child</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#ec4899"></span>.product.featured h2</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#a78bfa"></span>article &gt; p</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#2dd4bf"></span>a[href="/"]</span>
+        <span class="legend-item"><span class="legend-swatch" style="background:#fb923c"></span>.top-bar.dark h1</span>
+    </div>
+
+    <!-- ════════════════════════════════════════════════
+         LIVE DEMO  (exact HTML from exercise A2)
+         ════════════════════════════════════════════════ -->
+    <div class="demo-card">
+        <div class="demo-card-header">
+            <span>&#9679;</span> Live Demo — ShopTLU
+        </div>
+        <div class="demo-card-body">
+
+            <!-- ★ EXACT exercise structure — do not alter ★ -->
+            <div id="app">
+                <header class="top-bar dark">
+                    <h1>ShopTLU</h1>
+                    <nav>
+                        <a href="/" class="active">Home</a>
+                        <a href="/products">Products</a>
+                        <a href="/about">About</a>
+                    </nav>
+                </header>
+                <main>
+                    <article class="product">
+                        <h2>iPhone 16</h2>
+                        <p class="price">25.990.000đ</p>
+                        <p>Mô tả sản phẩm...</p>
+                    </article>
+                    <article class="product featured">
+                        <h2>MacBook Pro</h2>
+                        <p class="price">45.990.000đ</p>
+                        <p>Mô tả sản phẩm...</p>
+                    </article>
+                </main>
+            </div>
+            <!-- ★ END exact structure ★ -->
+
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════════════════════
+         REFERENCE TABLE
+         ════════════════════════════════════════════════ -->
+    <section class="ref-section">
+        <h2>📋 Bảng tham chiếu Selector</h2>
+        <table class="ref-table">
+            <thead>
+                <tr>
+                    <th style="width:4%">#</th>
+                    <th style="width:24%">Selector</th>
+                    <th style="width:16%">Loại</th>
+                    <th style="width:12%">Màu</th>
+                    <th>Phần tử được chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><code>h1</code></td>
+                    <td><span class="selector-type type-element">Element</span></td>
+                    <td><span class="swatch" style="background:#ff6f61"></span>Coral</td>
+                    <td>Tất cả thẻ <code>&lt;h1&gt;</code> — ở đây là <strong>"ShopTLU"</strong></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><code>.price</code></td>
+                    <td><span class="selector-type type-class">Class</span></td>
+                    <td><span class="swatch" style="background:#66ff66"></span>Lime</td>
+                    <td>Các phần tử có class <code>price</code> — 2 thẻ <code>&lt;p&gt;</code> giá sản phẩm</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><code>#app header</code></td>
+                    <td><span class="selector-type type-descendant">Descendant</span></td>
+                    <td><span class="swatch" style="background:#38bdf8"></span>Sky</td>
+                    <td>Thẻ <code>&lt;header&gt;</code> nằm bên trong <code>#app</code> — thanh navigation</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><code>nav a:first-child</code></td>
+                    <td><span class="selector-type type-pseudo">Pseudo-class</span></td>
+                    <td><span class="swatch" style="background:#fbbf24"></span>Gold</td>
+                    <td>Thẻ <code>&lt;a&gt;</code> đầu tiên trong <code>&lt;nav&gt;</code> — link <strong>"Home"</strong></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><code>.product.featured h2</code></td>
+                    <td><span class="selector-type type-compound">Compound</span></td>
+                    <td><span class="swatch" style="background:#ec4899"></span>Pink</td>
+                    <td><code>&lt;h2&gt;</code> trong article có cả class <code>product</code> lẫn <code>featured</code> — <strong>"MacBook Pro"</strong></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><code>article &gt; p</code></td>
+                    <td><span class="selector-type type-child">Child</span></td>
+                    <td><span class="swatch" style="background:#a78bfa"></span>Violet</td>
+                    <td>Tất cả thẻ <code>&lt;p&gt;</code> là con trực tiếp của <code>&lt;article&gt;</code> — 4 thẻ <code>&lt;p&gt;</code></td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><code>a[href="/"]</code></td>
+                    <td><span class="selector-type type-attribute">Attribute</span></td>
+                    <td><span class="swatch" style="background:#2dd4bf"></span>Teal</td>
+                    <td>Thẻ <code>&lt;a&gt;</code> có thuộc tính <code>href="/"</code> — link <strong>"Home"</strong></td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><code>.top-bar.dark h1</code></td>
+                    <td><span class="selector-type type-compound">Compound</span></td>
+                    <td><span class="swatch" style="background:#fb923c"></span>Orange</td>
+                    <td><code>&lt;h1&gt;</code> bên trong phần tử có cả class <code>top-bar</code> và <code>dark</code> — <strong>"ShopTLU"</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+</body>
+</html>

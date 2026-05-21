@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài B3 — CSS Specificity (Độ ưu tiên)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="specificity.css">
+</head>
+<body>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>CSS Specificity — Độ ưu tiên</h1>
+        <p class="subtitle">Bài tập B3 · 10 quy tắc CSS cùng nhắm vào một phần tử</p>
+    </header>
+
+    <!-- Demo Card — The Target Element -->
+    <section class="demo-card">
+        <span class="label">Phần tử mục tiêu</span>
+
+        <p id="demo" class="text highlight">Hello World</p>
+
+        <div class="winner-badge">🏆 Màu hiển thị: Magenta — Rule 10 thắng!</div>
+
+        <div class="code-snippet">
+            <span class="tag">&lt;p</span> <span class="attr">id=</span><span class="val">"demo"</span> <span class="attr">class=</span><span class="val">"text highlight"</span><span class="tag">&gt;</span><span class="txt">Hello World</span><span class="tag">&lt;/p&gt;</span>
+        </div>
+    </section>
+
+    <!-- Reference Table -->
+    <section class="reference-card">
+        <h2><span class="icon">📋</span> Bảng tham chiếu 10 quy tắc</h2>
+
+        <table class="spec-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Selector</th>
+                    <th>Tên màu</th>
+                    <th>Màu</th>
+                    <th>Specificity (a, b, c)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="rule-num">1</td>
+                    <td class="selector-cell">*</td>
+                    <td class="color-name">Gray</td>
+                    <td><span class="swatch" style="background:#808080;"></span></td>
+                    <td class="specificity-cell">(0, 0, 0)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">2</td>
+                    <td class="selector-cell">p</td>
+                    <td class="color-name">Black</td>
+                    <td><span class="swatch" style="background:#000000;"></span></td>
+                    <td class="specificity-cell">(0, 0, 1)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">3</td>
+                    <td class="selector-cell">.text</td>
+                    <td class="color-name">Blue</td>
+                    <td><span class="swatch" style="background:#0066cc;"></span></td>
+                    <td class="specificity-cell">(0, 1, 0)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">4</td>
+                    <td class="selector-cell">.highlight</td>
+                    <td class="color-name">Dark Orange</td>
+                    <td><span class="swatch" style="background:#ff8c00;"></span></td>
+                    <td class="specificity-cell">(0, 1, 0)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">5</td>
+                    <td class="selector-cell">p.text</td>
+                    <td class="color-name">Teal</td>
+                    <td><span class="swatch" style="background:#008080;"></span></td>
+                    <td class="specificity-cell">(0, 1, 1)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">6</td>
+                    <td class="selector-cell">.text.highlight</td>
+                    <td class="color-name">Purple</td>
+                    <td><span class="swatch" style="background:#800080;"></span></td>
+                    <td class="specificity-cell">(0, 2, 0)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">7</td>
+                    <td class="selector-cell">p.text.highlight</td>
+                    <td class="color-name">Saddle Brown</td>
+                    <td><span class="swatch" style="background:#8b4513;"></span></td>
+                    <td class="specificity-cell">(0, 2, 1)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">8</td>
+                    <td class="selector-cell">#demo</td>
+                    <td class="color-name">Crimson</td>
+                    <td><span class="swatch" style="background:#dc143c;"></span></td>
+                    <td class="specificity-cell">(1, 0, 0)</td>
+                </tr>
+                <tr>
+                    <td class="rule-num">9</td>
+                    <td class="selector-cell">#demo.text</td>
+                    <td class="color-name">Deep Pink</td>
+                    <td><span class="swatch" style="background:#cc0066;"></span></td>
+                    <td class="specificity-cell">(1, 1, 0)</td>
+                </tr>
+                <tr class="winner-row">
+                    <td class="rule-num">10</td>
+                    <td class="selector-cell">#demo.text.highlight</td>
+                    <td class="color-name">Magenta ✨</td>
+                    <td><span class="swatch" style="background:#ff00ff;"></span></td>
+                    <td class="specificity-cell">(1, 2, 0)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Explanation Card -->
+    <section class="explanation-card">
+        <h2><span class="icon">💡</span> Giải thích: Màu nào thắng và tại sao?</h2>
+
+        <div class="answer-box">
+            <p>Màu hiển thị cuối cùng của chữ "Hello World" là:</p>
+            <p class="big-color">Magenta (#ff00ff)</p>
+            <p>Đây là màu từ <strong>Rule 10</strong> với selector <code>#demo.text.highlight</code></p>
+        </div>
+
+        <div class="details">
+            <p>
+                <strong>Tại sao Rule 10 thắng?</strong> Vì nó có <strong>specificity cao nhất</strong> 
+                trong tất cả 10 quy tắc: <code>(1, 2, 0)</code>.
+            </p>
+
+            <div class="formula">
+                <span class="label-text">Cách tính Specificity của Rule 10</span>
+                #demo.text.highlight<br>
+                → 1 ID (#demo)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = a: 1<br>
+                → 2 class (.text, .highlight) = b: 2<br>
+                → 0 element&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; = c: 0<br>
+                ──────────────────────────────────<br>
+                Specificity = (1, 2, 0)
+            </div>
+
+            <p>
+                <strong>Quy tắc so sánh:</strong> Specificity được so sánh từ trái sang phải. 
+                Cột <strong>a</strong> (ID) có trọng số cao nhất. Nếu cột a bằng nhau, 
+                so sánh cột <strong>b</strong> (class/attribute/pseudo-class). Nếu vẫn bằng, 
+                so sánh cột <strong>c</strong> (element/pseudo-element).
+            </p>
+
+            <p>
+                <strong>Lưu ý về Rule 3 & 4:</strong> Cả hai đều có specificity 
+                <code>(0, 1, 0)</code>. Khi specificity bằng nhau, quy tắc nào 
+                <strong>viết sau</strong> sẽ thắng (cascade order). Do đó nếu chỉ có 2 
+                rule này, <code>.highlight</code> (Dark Orange) sẽ được áp dụng vì nó 
+                xuất hiện sau <code>.text</code>.
+            </p>
+
+            <p>
+                <strong>Tại sao Rule 1 yếu nhất?</strong> Selector <code>*</code> (universal 
+                selector) có specificity <code>(0, 0, 0)</code> — nó không đóng góp bất kỳ 
+                giá trị nào vào điểm specificity.
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+        Bài tập B3 — CSS Specificity · PBT_03_CSS_Core
+    </footer>
+
+</body>
+</html>
