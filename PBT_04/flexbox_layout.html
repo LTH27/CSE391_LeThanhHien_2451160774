@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B2 — Flexbox Navigation & Cards</title>
+  <link rel="stylesheet" href="flexbox.css" />
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <!--
+    Layout:  |  LOGO  |   Home  Products  About   |  Login  Register  |
+    Kỹ thuật: display:flex + justify-content:space-between + align-items:center
+  -->
+  <nav class="navbar">
+    <div class="logo">🛒 ShopDemo</div>
+
+    <ul class="nav-menu">
+      <li><a href="#">Trang chủ</a></li>
+      <li><a href="#">Sản phẩm</a></li>
+      <li><a href="#">Khuyến mãi</a></li>
+      <li><a href="#">Tin tức</a></li>
+      <li><a href="#">Liên hệ</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="#" class="btn-login">Đăng nhập</a>
+      <a href="#" class="btn-register">Đăng ký</a>
+    </div>
+  </nav>
+
+  <!-- ====== PRODUCT CARDS ====== -->
+  <h2 class="section-title">Sản phẩm nổi bật</h2>
+
+  <!--
+    Container: display:flex + flex-wrap:wrap
+    Mỗi card: flex: 0 0 calc(25% - 15px)  →  4 cột
+    Bên trong card: flex-direction:column, nút dùng margin-top:auto
+  -->
+  <div class="product-container">
+
+    <!-- Card 1 -->
+    <div class="product-card">
+      <div class="card-img">📱</div>
+      <div class="card-info">
+        <h3>iPhone 15 Pro</h3>
+        <p class="price">29.990.000 đ</p>
+        <p class="desc">Chip A17 Pro, camera 48MP, titanium</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="product-card">
+      <div class="card-img">💻</div>
+      <div class="card-info">
+        <h3>MacBook Air M2</h3>
+        <p class="price">27.490.000 đ</p>
+        <p class="desc">Chip M2, RAM 8GB, SSD 256GB, siêu mỏng nhẹ</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="product-card">
+      <div class="card-img">🎧</div>
+      <div class="card-info">
+        <h3>AirPods Pro 2</h3>
+        <p class="price">6.490.000 đ</p>
+        <p class="desc">Chống ồn ANC, âm thanh H2, chống nước</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="product-card">
+      <div class="card-img">⌚</div>
+      <div class="card-info">
+        <h3>Apple Watch S9</h3>
+        <p class="price">10.990.000 đ</p>
+        <p class="desc">Màn hình Always-On, chip S9, siri chính xác hơn</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="product-card">
+      <div class="card-img">📷</div>
+      <div class="card-info">
+        <h3>Samsung S24 Ultra</h3>
+        <p class="price">31.990.000 đ</p>
+        <p class="desc">Camera 200MP, S Pen, AI Galaxy, màn AMOLED</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="product-card">
+      <div class="card-img">🖥</div>
+      <div class="card-info">
+        <h3>iPad Pro M4</h3>
+        <p class="price">23.990.000 đ</p>
+        <p class="desc">Chip M4, màn OLED 11", mỏng nhất từ trước đến nay</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+    <!-- Card 7 -->
+    <div class="product-card">
+      <div class="card-img">🖱</div>
+      <div class="card-info">
+        <h3>Logitech MX Master 3S</h3>
+        <p class="price">2.190.000 đ</p>
+        <p class="desc">Chuột không dây cao cấp, 8K DPI, im lặng</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+    <!-- Card 8 -->
+    <div class="product-card">
+      <div class="card-img">⌨️</div>
+      <div class="card-info">
+        <h3>Keychron K2 Pro</h3>
+        <p class="price">2.890.000 đ</p>
+        <p class="desc">Bàn phím cơ compact, kết nối 3 thiết bị, hot-swap</p>
+      </div>
+      <a href="#" class="btn-buy">Mua ngay</a>
+    </div>
+
+  </div><!-- end product-container -->
+
+</body>
+</html>

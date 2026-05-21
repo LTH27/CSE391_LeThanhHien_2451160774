@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B3 — CSS Grid E-Commerce Layout</title>
+  <link rel="stylesheet" href="grid.css" />
+</head>
+<body>
+
+<!--
+  OUTER GRID — grid-template-areas:
+    "header  header  header"
+    "hero    hero    hero"
+    "sidebar main    ads"
+    "footer  footer  footer"
+
+  grid-template-columns: 200px 1fr 200px
+-->
+<div class="page-grid">
+
+  <!-- ====== HEADER (full width) ====== -->
+  <header class="header">
+    <div class="logo">🛒 ShopDemo</div>
+    <nav>
+      <a href="#">Trang chủ</a>
+      <a href="#">Sản phẩm</a>
+      <a href="#">Khuyến mãi</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+  </header>
+
+  <!-- ====== HERO BANNER (full width) ====== -->
+  <!--
+    Bonus: hero-featured card dùng grid-column: span 2 (bên trong hero)
+    Hero banner span full width nhờ grid-area: hero → tự span 3 cột
+  -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>🔥 Sale lớn tháng 5</h1>
+      <p>Giảm đến 50% cho hàng ngàn sản phẩm công nghệ.<br>Mua ngay hôm nay, giao hàng hỏa tốc!</p>
+      <a href="#" class="btn-hero">Mua sắm ngay</a>
+    </div>
+    <div class="hero-featured">
+      <div class="feat-icon">📱</div>
+      <h3>iPhone 15 Pro Max</h3>
+      <div class="feat-price">34.990.000 đ</div>
+    </div>
+  </section>
+
+  <!-- ====== SIDEBAR — Filter (200px) ====== -->
+  <aside class="sidebar">
+    <h3>Bộ lọc</h3>
+
+    <div class="filter-group">
+      <h4>Danh mục</h4>
+      <label><input type="checkbox" checked /> Điện thoại</label>
+      <label><input type="checkbox" /> Laptop</label>
+      <label><input type="checkbox" /> Tablet</label>
+      <label><input type="checkbox" /> Phụ kiện</label>
+      <label><input type="checkbox" /> Đồng hồ</label>
+    </div>
+
+    <div class="filter-group">
+      <h4>Thương hiệu</h4>
+      <label><input type="checkbox" checked /> Apple</label>
+      <label><input type="checkbox" checked /> Samsung</label>
+      <label><input type="checkbox" /> Xiaomi</label>
+      <label><input type="checkbox" /> OPPO</label>
+    </div>
+
+    <div class="filter-group price-range">
+      <h4>Giá tối đa</h4>
+      <input type="range" min="0" max="50000000" step="1000000" value="35000000" />
+      <p style="font-size:12px; color:#888; margin-top:6px;">0 — 35.000.000 đ</p>
+    </div>
+  </aside>
+
+  <!-- ====== MAIN CONTENT — Inner Grid 3 cột ====== -->
+  <main class="main">
+    <div class="main-header">
+      <h2>Sản phẩm (6 sản phẩm)</h2>
+      <select>
+        <option>Mới nhất</option>
+        <option>Giá tăng dần</option>
+        <option>Giá giảm dần</option>
+        <option>Bán chạy</option>
+      </select>
+    </div>
+
+    <!--
+      Inner grid: grid-template-columns: repeat(3, 1fr)
+      6 product cards → 2 hàng × 3 cột
+    -->
+    <div class="products-grid">
+
+      <div class="p-card">
+        <div class="p-img">📱</div>
+        <div class="p-info">
+          <h4>iPhone 15 Pro</h4>
+          <p class="p-price">29.990.000 đ</p>
+        </div>
+        <a href="#" class="p-btn">Mua ngay</a>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">💻</div>
+        <div class="p-info">
+          <h4>MacBook Air M2</h4>
+          <p class="p-price">27.490.000 đ</p>
+        </div>
+        <a href="#" class="p-btn">Mua ngay</a>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">📷</div>
+        <div class="p-info">
+          <h4>Samsung S24 Ultra</h4>
+          <p class="p-price">31.990.000 đ</p>
+        </div>
+        <a href="#" class="p-btn">Mua ngay</a>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">🎧</div>
+        <div class="p-info">
+          <h4>AirPods Pro 2</h4>
+          <p class="p-price">6.490.000 đ</p>
+        </div>
+        <a href="#" class="p-btn">Mua ngay</a>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">🖥</div>
+        <div class="p-info">
+          <h4>iPad Pro M4</h4>
+          <p class="p-price">23.990.000 đ</p>
+        </div>
+        <a href="#" class="p-btn">Mua ngay</a>
+      </div>
+
+      <div class="p-card">
+        <div class="p-img">⌚</div>
+        <div class="p-info">
+          <h4>Apple Watch S9</h4>
+          <p class="p-price">10.990.000 đ</p>
+        </div>
+        <a href="#" class="p-btn">Mua ngay</a>
+      </div>
+
+    </div><!-- end products-grid -->
+  </main>
+
+  <!-- ====== ADS SIDEBAR (200px) ====== -->
+  <aside class="ads">
+    <div class="ad-banner">
+      <div class="ad-img">🎁</div>
+      <h4>Quà tặng miễn phí</h4>
+      <p>Mua từ 5 triệu tặng tai nghe</p>
+    </div>
+    <div class="ad-banner">
+      <div class="ad-img" style="background: linear-gradient(135deg,#a8edea,#fed6e3);">💳</div>
+      <h4>Trả góp 0%</h4>
+      <p>12 tháng không lãi suất</p>
+    </div>
+    <div class="ad-banner">
+      <div class="ad-img" style="background: linear-gradient(135deg,#d4fc79,#96e6a1);">🚚</div>
+      <h4>Giao hàng nhanh</h4>
+      <p>Nội thành 2 giờ</p>
+    </div>
+  </aside>
+
+  <!-- ====== FOOTER (full width) ====== -->
+  <!--
+    Footer span full width: grid-area: footer → tự span 3 cột theo grid-template-areas
+    Bên trong footer dùng grid 4 cột cho 4 nhóm thông tin
+  -->
+  <footer class="footer">
+    <div class="footer-col">
+      <h4>Về chúng tôi</h4>
+      <ul>
+        <li><a href="#">Giới thiệu</a></li>
+        <li><a href="#">Tuyển dụng</a></li>
+        <li><a href="#">Tin tức</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Liên kết</h4>
+      <ul>
+        <li><a href="#">Sản phẩm</a></li>
+        <li><a href="#">Khuyến mãi</a></li>
+        <li><a href="#">Flash Sale</a></li>
+        <li><a href="#">Thương hiệu</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Hỗ trợ</h4>
+      <ul>
+        <li><a href="#">Hướng dẫn mua</a></li>
+        <li><a href="#">Chính sách đổi trả</a></li>
+        <li><a href="#">Bảo hành</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Liên hệ</h4>
+      <ul>
+        <li>📞 1800 1234</li>
+        <li>✉️ shop@demo.vn</li>
+        <li>📍 Hà Nội, Việt Nam</li>
+        <li>🕐 8:00 — 22:00</li>
+      </ul>
+    </div>
+  </footer>
+
+</div><!-- end page-grid -->
+
+</body>
+</html>

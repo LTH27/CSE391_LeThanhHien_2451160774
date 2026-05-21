@@ -1,0 +1,350 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  color: #222;
+  background: #f4f4f4;
+}
+
+/* ===================================
+   OUTER PAGE GRID
+   header | hero | sidebar+main+ads | footer
+=================================== */
+.page-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "header  header  header"
+    "hero    hero    hero"
+    "sidebar main    ads"
+    "footer  footer  footer";
+  gap: 16px;
+  min-height: 100vh;
+  padding: 16px;
+}
+
+/* ===================================
+   HEADER
+=================================== */
+.header {
+  grid-area: header;
+  background: #1a1a2e;
+  color: #fff;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+}
+
+.header .logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.header nav a:hover {
+  color: #fff;
+}
+
+/* ===================================
+   HERO BANNER
+=================================== */
+.hero {
+  grid-area: hero;
+  background: linear-gradient(120deg, #1a1a2e 60%, #2a5298 100%);
+  color: #fff;
+  border-radius: 6px;
+  padding: 40px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.hero-text h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.hero-text p {
+  font-size: 15px;
+  color: #aaa;
+  margin-bottom: 20px;
+}
+
+.hero-text .btn-hero {
+  display: inline-block;
+  padding: 10px 24px;
+  background: #fff;
+  color: #1a1a2e;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* Card nổi bật trong hero (bonus: grid-column: span 2) */
+.hero-featured {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  padding: 20px;
+  width: 260px;
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.hero-featured .feat-icon {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero-featured h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.hero-featured .feat-price {
+  color: #f0c040;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ===================================
+   SIDEBAR
+=================================== */
+.sidebar {
+  grid-area: sidebar;
+  background: #fff;
+  border-radius: 6px;
+  padding: 16px;
+  align-self: start;
+  position: sticky;
+  top: 16px;
+  border: 1px solid #ddd;
+}
+
+.sidebar h3 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.filter-group {
+  margin-bottom: 16px;
+}
+
+.filter-group h4 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #444;
+}
+
+.filter-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+  cursor: pointer;
+}
+
+.filter-group label:hover {
+  color: #1a1a2e;
+}
+
+.price-range input {
+  width: 100%;
+  margin-top: 6px;
+}
+
+/* ===================================
+   MAIN CONTENT — Inner Grid
+=================================== */
+.main {
+  grid-area: main;
+}
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.main-header h2 {
+  font-size: 18px;
+}
+
+.main-header select {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* Inner grid for product cards — 3 columns */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* Product Card */
+.p-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.p-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+.p-card .p-img {
+  height: 120px;
+  background: linear-gradient(135deg, #e8e8e8, #d4d4d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+}
+
+.p-card .p-info {
+  padding: 10px 12px;
+  flex: 1;
+}
+
+.p-card .p-info h4 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.p-card .p-info .p-price {
+  color: #e74c3c;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.p-card .p-btn {
+  display: block;
+  margin: 0 12px 12px;
+  margin-top: auto;
+  padding: 7px 0;
+  background: #1a1a2e;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.p-card .p-btn:hover {
+  background: #2a2a5e;
+}
+
+/* ===================================
+   ADS SIDEBAR
+=================================== */
+.ads {
+  grid-area: ads;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-self: start;
+  position: sticky;
+  top: 16px;
+}
+
+.ad-banner {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 16px;
+  text-align: center;
+}
+
+.ad-banner .ad-img {
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(135deg, #ffecd2, #fcb69f);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.ad-banner h4 {
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #1a1a2e;
+}
+
+.ad-banner p {
+  font-size: 12px;
+  color: #888;
+}
+
+/* ===================================
+   FOOTER
+=================================== */
+.footer {
+  grid-area: footer;
+  background: #1a1a2e;
+  color: #aaa;
+  border-radius: 6px;
+  padding: 24px 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.footer-col h4 {
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.footer-col ul li a {
+  color: #888;
+  text-decoration: none;
+}
+
+.footer-col ul li a:hover {
+  color: #fff;
+}

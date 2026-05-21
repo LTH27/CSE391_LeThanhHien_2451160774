@@ -1,0 +1,196 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  color: #222;
+  background: #f5f5f5;
+}
+
+/* ===== FIXED HEADER ===== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: #1a1a2e;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.header .logo {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.header nav a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.header nav a:hover {
+  color: #fff;
+}
+
+/* ===== PAGE BODY (offset for fixed header) ===== */
+.page-wrapper {
+  margin-top: 60px;
+  display: flex;
+  gap: 0;
+  min-height: 200vh; /* tall page to demo scroll */
+}
+
+/* ===== STICKY SIDEBAR ===== */
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 20px 16px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+}
+
+.sidebar-inner {
+  position: sticky;
+  top: 80px; /* below fixed header */
+}
+
+.sidebar h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #888;
+  margin-bottom: 12px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sidebar ul li:hover {
+  color: #1a1a2e;
+  font-weight: bold;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  flex: 1;
+  padding: 24px;
+}
+
+.main-content h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+/* ===== PRODUCT CARDS ===== */
+.cards-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ===== CARD WITH BADGE ===== */
+.card {
+  position: relative; /* anchor for badge */
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  width: calc(33.333% - 14px);
+}
+
+.card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  background: #e0e0e0;
+  display: block;
+}
+
+.card-body {
+  padding: 12px;
+}
+
+.card-body h4 {
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.card-body p {
+  color: #888;
+  font-size: 13px;
+}
+
+/* ===== BADGE "HOT" ===== */
+.badge-hot {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  background: #e74c3c;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* ===== SCROLL TO TOP BUTTON ===== */
+.scroll-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 44px;
+  height: 44px;
+  background: #1a1a2e;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  text-decoration: none;
+  z-index: 999;
+}
+
+.scroll-top:hover {
+  background: #2a2a5e;
+}
+
+/* ===== PLACEHOLDER IMAGE ===== */
+.placeholder-img {
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(135deg, #ddd 0%, #c8c8c8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 13px;
+}

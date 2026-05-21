@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B1 — Positioning Playground</title>
+  <link rel="stylesheet" href="positioning.css" />
+</head>
+<body>
+
+  <!-- FIXED HEADER -->
+  <header class="header">
+    <div class="logo">🛒 ShopDemo</div>
+    <nav>
+      <a href="#">Trang chủ</a>
+      <a href="#">Sản phẩm</a>
+      <a href="#">Giới thiệu</a>
+      <a href="#">Liên hệ</a>
+    </nav>
+  </header>
+
+  <!-- PAGE WRAPPER -->
+  <div class="page-wrapper">
+
+    <!-- STICKY SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-inner">
+        <h3>Danh mục</h3>
+        <ul>
+          <li>Điện thoại</li>
+          <li>Laptop</li>
+          <li>Máy tính bảng</li>
+          <li>Phụ kiện</li>
+          <li>Đồng hồ</li>
+          <li>Âm thanh</li>
+        </ul>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+      <h2>Sản phẩm nổi bật</h2>
+
+      <div class="cards-grid">
+
+        <!-- Card 1 — có badge HOT -->
+        <div class="card">
+          <div class="badge-hot">HOT</div>
+          <div class="placeholder-img">📱 Ảnh</div>
+          <div class="card-body">
+            <h4>iPhone 15 Pro</h4>
+            <p>29.990.000 đ</p>
+          </div>
+        </div>
+
+        <!-- Card 2 — có badge HOT -->
+        <div class="card">
+          <div class="badge-hot">HOT</div>
+          <div class="placeholder-img">💻 Ảnh</div>
+          <div class="card-body">
+            <h4>MacBook Air M2</h4>
+            <p>27.490.000 đ</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="placeholder-img">🎧 Ảnh</div>
+          <div class="card-body">
+            <h4>AirPods Pro</h4>
+            <p>6.490.000 đ</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card">
+          <div class="placeholder-img">⌚ Ảnh</div>
+          <div class="card-body">
+            <h4>Apple Watch S9</h4>
+            <p>10.990.000 đ</p>
+          </div>
+        </div>
+
+        <!-- Card 5 — có badge HOT -->
+        <div class="card">
+          <div class="badge-hot">HOT</div>
+          <div class="placeholder-img">📷 Ảnh</div>
+          <div class="card-body">
+            <h4>Samsung S24 Ultra</h4>
+            <p>31.990.000 đ</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card">
+          <div class="placeholder-img">🖥 Ảnh</div>
+          <div class="card-body">
+            <h4>iPad Pro M4</h4>
+            <p>23.990.000 đ</p>
+          </div>
+        </div>
+
+      </div><!-- end cards-grid -->
+
+      <!-- Extra content to make page tall enough to scroll -->
+      <div style="margin-top: 60px; padding: 20px; background:#fff; border:1px solid #ddd; border-radius:6px;">
+        <h3 style="margin-bottom:10px;">Ghi chú kỹ thuật (demo scroll)</h3>
+        <p style="line-height:1.8; color:#555;">
+          Trang này có chiều cao lớn để bạn có thể cuộn xuống và quan sát:<br>
+          ✅ <strong>Header</strong> luôn cố định ở trên cùng (position: fixed)<br>
+          ✅ <strong>Sidebar</strong> dính lại khi scroll đến vị trí top: 80px (position: sticky)<br>
+          ✅ <strong>Badge "HOT"</strong> nằm ở góc phải trên của card (position: absolute trên relative parent)<br>
+          ✅ <strong>Nút ↑</strong> luôn ở góc phải dưới viewport (position: fixed)
+        </p>
+      </div>
+
+      <div style="height: 800px;"></div><!-- spacer -->
+
+    </main>
+  </div>
+
+  <!-- SCROLL TO TOP BUTTON (fixed) -->
+  <a href="#" class="scroll-top" title="Lên đầu trang">↑</a>
+
+</body>
+</html>
