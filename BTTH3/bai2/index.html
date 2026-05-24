@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quản Lý Công Việc</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-logo">
+        <span class="logo-icon">✅</span>
+        <h1>Quản Lý Công Việc</h1>
+      </div>
+      <button class="btn btn-primary" id="btnOpenForm">
+        <span>＋</span> Thêm Công Việc
+      </button>
+    </div>
+  </header>
+
+  <!-- Thống kê -->
+  <section class="stats-section">
+    <div class="stat-card stat-total">
+      <div class="stat-icon">📋</div>
+      <div class="stat-info">
+        <span class="stat-value" id="totalTasks">0</span>
+        <span class="stat-label">Tổng công việc</span>
+      </div>
+    </div>
+    <div class="stat-card stat-done">
+      <div class="stat-icon">🟢</div>
+      <div class="stat-info">
+        <span class="stat-value" id="doneTasks">0</span>
+        <span class="stat-label">Đã hoàn thành</span>
+      </div>
+    </div>
+    <div class="stat-card stat-pending">
+      <div class="stat-icon">🔴</div>
+      <div class="stat-info">
+        <span class="stat-value" id="pendingTasks">0</span>
+        <span class="stat-label">Chưa hoàn thành</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Danh sách công việc -->
+  <main class="main-content">
+    <div class="task-list" id="taskList">
+      <!-- render bằng JS -->
+    </div>
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🗂️</div>
+      <p>Chưa có công việc nào. Hãy thêm công việc đầu tiên!</p>
+    </div>
+  </main>
+
+  <!-- Modal Form -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Thêm Công Việc</h2>
+        <button class="btn-close" id="btnCloseForm">✕</button>
+      </div>
+      <form id="taskForm" novalidate>
+        <div class="form-group">
+          <label for="tieuDe">Tiêu đề <span class="required">*</span></label>
+          <input type="text" id="tieuDe" placeholder="Tên công việc..." />
+          <span class="field-error" id="err-tieuDe"></span>
+        </div>
+        <div class="form-group">
+          <label for="moTa">Mô tả ngắn</label>
+          <textarea id="moTa" rows="3" placeholder="Mô tả công việc..."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hanHoanThanh">Hạn hoàn thành <span class="required">*</span></label>
+            <input type="date" id="hanHoanThanh" />
+            <span class="field-error" id="err-hanHoanThanh"></span>
+          </div>
+          <div class="form-group">
+            <label for="mucUuTien">Mức ưu tiên <span class="required">*</span></label>
+            <select id="mucUuTien">
+              <option value="">-- Chọn --</option>
+              <option value="cao">🔴 Cao</option>
+              <option value="trung-binh">🟡 Trung bình</option>
+              <option value="thap">🟢 Thấp</option>
+            </select>
+            <span class="field-error" id="err-mucUuTien"></span>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" id="btnCancel">Hủy</button>
+          <button type="submit" class="btn btn-primary" id="btnSubmit">💾 Lưu</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
