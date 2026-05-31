@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎯 Đoán Số</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #1a1a2e;
+            color: #eee;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: #16213e;
+            border-radius: 16px;
+            padding: 40px;
+            width: 420px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 28px;
+            font-size: 0.9rem;
+        }
+
+        .attempts-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #0f3460;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+        }
+
+        .attempts-bar span:first-child { color: #aaa; }
+
+        #attempts-left {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e94560;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        #guess-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #0f3460;
+            border-radius: 8px;
+            background: #0f3460;
+            color: #fff;
+            font-size: 1.1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #guess-input:focus { border-color: #e94560; }
+
+        button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:hover { opacity: 0.85; }
+        button:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        #submit-btn { background: #e94560; color: #fff; }
+        #restart-btn { background: #533483; color: #fff; }
+
+        .message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-weight: 500;
+            min-height: 44px;
+        }
+
+        .message.info    { background: #0f3460; }
+        .message.success { background: #1a5c38; color: #7dff9e; }
+        .message.error   { background: #5c1a1a; color: #ff7d7d; }
+        .message.warn    { background: #5c4a1a; color: #ffd07d; }
+        .message.hint    { background: #1a3a5c; color: #7dcfff; }
+
+        .history-label {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 6px;
+        }
+
+        #history {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            min-height: 36px;
+        }
+
+        #history span {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .history-correct { background: #1a5c38; color: #7dff9e; }
+        .history-wrong   { background: #5c1a1a; color: #ff7d7d; }
+        .history-low     { background: #1a3a5c; color: #7dcfff; }
+        .history-high    { background: #3a1a5c; color: #cf7dff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Đoán Số</h1>
+        <p class="subtitle">Tôi đang nghĩ một số từ 1 đến 100</p>
+
+        <div class="attempts-bar">
+            <span>Lượt còn lại</span>
+            <span id="attempts-left">7</span>
+        </div>
+
+        <div class="input-row">
+            <input
+                type="number"
+                id="guess-input"
+                placeholder="Nhập số (1-100)"
+                min="1"
+                max="100"
+            />
+            <button id="submit-btn" onclick="handleGuess()">Đoán</button>
+            <button id="restart-btn" onclick="startGame()">🔄</button>
+        </div>
+
+        <div id="message" class="message info">Đang khởi động...</div>
+
+        <div class="history-label">Các số đã đoán:</div>
+        <div id="history"></div>
+    </div>
+
+    <script src="guess.js"></script>
+</body>
+</html>
