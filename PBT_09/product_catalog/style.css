@@ -1,0 +1,257 @@
+:root {
+    --bg: #f7f8fc;
+    --surface: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --accent: #f59e0b;
+    --border: #e5e7eb;
+    --shadow: 0 20px 50px rgba(15, 23, 42, 0.08);
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, sans-serif;
+}
+
+body.dark-mode {
+    background: #111827;
+    color: #f9fafb;
+}
+
+#productApp {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 16px 56px;
+}
+
+.header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.title-group h1 {
+    margin: 0;
+    font-size: clamp(2rem, 2.5vw, 2.8rem);
+}
+
+.title-group p {
+    margin: 8px 0 0;
+    color: var(--muted);
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+.input-group,
+.select-group,
+.mode-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+input,
+select,
+button {
+    font: inherit;
+}
+
+.search-input {
+    min-width: 220px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    outline: none;
+}
+
+.category-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, max-content));
+    gap: 10px;
+    margin-bottom: 22px;
+}
+
+.category-btn,
+.sort-select,
+.dark-toggle,
+.cart-button {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    color: inherit;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.category-btn.active,
+.dark-toggle.active,
+.cart-button:hover,
+.category-btn:hover {
+    border-color: transparent;
+    background: var(--primary);
+    color: white;
+}
+
+.sort-select {
+    min-width: 180px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    border: 1px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border);
+}
+
+.card.dark-mode {
+    background: #1f2937;
+    border-color: #374151;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 18px;
+    object-fit: cover;
+}
+
+.card h3 {
+    margin: 16px 0 8px;
+    font-size: 1.1rem;
+}
+
+.card p {
+    margin: 0 0 12px;
+    color: var(--muted);
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #ecfdf5;
+    color: #166534;
+    font-size: 0.9rem;
+}
+
+.badge.out-of-stock {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.add-cart {
+    border: none;
+    background: var(--accent);
+    color: white;
+    border-radius: 14px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.add-cart:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.72);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    z-index: 100;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal {
+    width: 100%;
+    max-width: 620px;
+    background: var(--surface);
+    border-radius: 24px;
+    padding: 26px;
+    position: relative;
+}
+
+body.dark-mode .modal {
+    background: #111827;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    border: none;
+    background: transparent;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: inherit;
+}
+
+.modal h2 {
+    margin-top: 0;
+}
+
+.modal p {
+    color: var(--muted);
+}
+
+.modal .detail-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.modal .detail-row span {
+    display: block;
+    font-weight: 600;
+}
+
+@media (max-width: 760px) {
+    .header,
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .detail-row {
+        grid-template-columns: 1fr;
+    }
+}

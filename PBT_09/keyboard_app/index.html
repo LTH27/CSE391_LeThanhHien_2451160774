@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard Gallery - PBT 09</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="keyboard-shell">
+        <header class="hero">
+            <h1>Keyboard Gallery</h1>
+            <p>Sử dụng phím ← →, số 1-9, Space và Ctrl+K để điều khiển.</p>
+        </header>
+
+        <section class="gallery-card">
+            <div class="image-frame" tabindex="0" aria-label="Image display">
+                <img id="galleryImage" src="" alt="Gallery image">
+                <div id="imageLabel" class="image-label"></div>
+            </div>
+
+            <div class="controls">
+                <button id="prevBtn" class="control-btn" aria-label="Previous image">←</button>
+                <button id="playPauseBtn" class="control-btn" aria-label="Play slideshow">Play</button>
+                <button id="nextBtn" class="control-btn" aria-label="Next image">→</button>
+            </div>
+
+            <div class="thumbnail-list" id="thumbnailList" role="list"></div>
+        </section>
+    </main>
+
+    <div id="commandOverlay" class="overlay" aria-hidden="true">
+        <div class="command-card" role="dialog" aria-modal="true" aria-labelledby="commandTitle">
+            <h2 id="commandTitle">Command Palette</h2>
+            <input id="commandSearch" type="text" placeholder="Type a command..." aria-label="Search commands">
+            <ul id="commandList"></ul>
+        </div>
+    </div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>

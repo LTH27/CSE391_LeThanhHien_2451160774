@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validator - PBT 09</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="validator-shell">
+        <section class="validator-card">
+            <h1>Đăng ký</h1>
+            <p>Điền thông tin và submit khi tất cả valid.</p>
+            <form id="registerForm" novalidate>
+                <label>
+                    Tên
+                    <input id="nameInput" type="text" placeholder="Nhập tên...">
+                    <small class="hint" id="nameHint"></small>
+                </label>
+
+                <label>
+                    Email
+                    <input id="emailInput" type="email" placeholder="example@mail.com">
+                    <small class="hint" id="emailHint"></small>
+                </label>
+
+                <label>
+                    Password
+                    <input id="passwordInput" type="password" placeholder="Mật khẩu">
+                    <div class="strength-bar" aria-hidden="true">
+                        <div id="strengthFill"></div>
+                    </div>
+                    <small class="hint" id="passwordHint"></small>
+                </label>
+
+                <label>
+                    Confirm Password
+                    <input id="confirmInput" type="password" placeholder="Nhập lại mật khẩu">
+                    <small class="hint" id="confirmHint"></small>
+                </label>
+
+                <label>
+                    Phone
+                    <input id="phoneInput" type="tel" placeholder="0901-234-567" maxlength="13">
+                    <small class="hint" id="phoneHint"></small>
+                </label>
+
+                <button id="submitButton" type="submit" disabled>Đăng ký</button>
+            </form>
+        </section>
+    </main>
+
+    <div id="successModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+            <button id="closeModal" class="modal-close" aria-label="Close">✕</button>
+            <h2 id="modalTitle">Đăng ký thành công!</h2>
+            <p id="modalMessage"></p>
+            <button id="okButton" class="btn-primary">OK</button>
+        </div>
+    </div>
+
+    <script src="app.js" defer></script>
+</body>
+</html>

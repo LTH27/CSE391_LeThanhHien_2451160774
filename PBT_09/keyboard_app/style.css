@@ -1,0 +1,189 @@
+:root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --surface-2: #334155;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-2: #f97316;
+    --border: #334155;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Inter, system-ui, sans-serif;
+    background: radial-gradient(circle at top, #1e3a8a 0%, #0f172a 60%);
+    color: var(--text);
+}
+
+.keyboard-shell {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 28px 16px 56px;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.hero p {
+    margin: 10px 0 0;
+    color: var(--muted);
+}
+
+.gallery-card {
+    margin-top: 24px;
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    border-radius: 28px;
+    padding: 24px;
+}
+
+.image-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    display: grid;
+}
+
+.image-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.image-label {
+    position: absolute;
+    left: 16px;
+    bottom: 16px;
+    background: rgba(15, 23, 42, 0.88);
+    padding: 10px 14px;
+    border-radius: 14px;
+    color: white;
+    font-weight: 600;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 18px;
+}
+
+.control-btn {
+    border: 1px solid rgba(148, 163, 184, 0.35);
+    background: rgba(30, 41, 59, 0.95);
+    color: white;
+    width: 92px;
+    height: 48px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.thumbnail-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.thumbnail {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.thumbnail img {
+    width: 100%;
+    display: block;
+}
+
+.thumbnail.active {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 100;
+}
+
+.overlay.active {
+    display: flex;
+}
+
+.command-card {
+    width: min(520px, 100%);
+    background: var(--surface-2);
+    border-radius: 24px;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    padding: 24px;
+}
+
+.command-card h2 {
+    margin: 0 0 16px;
+}
+
+#commandSearch {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    border: 1px solid rgba(148, 163, 184, 0.4);
+    background: rgba(15, 23, 42, 0.85);
+    color: white;
+    outline: none;
+}
+
+#commandSearch:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.16);
+}
+
+#commandList {
+    list-style: none;
+    margin: 16px 0 0;
+    padding: 0;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.command-item {
+    padding: 14px 16px;
+    border-radius: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease;
+}
+
+.command-item:hover,
+.command-item.active {
+    background: rgba(56, 189, 248, 0.2);
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid rgba(56, 189, 248, 0.8);
+    outline-offset: 3px;
+}
