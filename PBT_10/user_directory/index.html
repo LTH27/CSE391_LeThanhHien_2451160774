@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Directory - PBT 10</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>User Directory</h1>
+      <p>CRUD user demo với JSONPlaceholder API.</p>
+    </header>
+    <section class="panel">
+      <div class="top-bar">
+        <input id="searchInput" type="search" placeholder="Tìm theo tên hoặc email...">
+        <button id="newUserBtn">Thêm user mới</button>
+      </div>
+      <div id="alert" class="alert hidden"></div>
+      <div id="loading" class="loading">Đang tải dữ liệu...</div>
+      <div id="userCards" class="user-grid"></div>
+    </section>
+    <section id="formSection" class="form-section hidden">
+      <h2 id="formTitle">Thêm user</h2>
+      <form id="userForm">
+        <label>
+          Name
+          <input id="name" type="text" required>
+        </label>
+        <label>
+          Email
+          <input id="email" type="email" required>
+        </label>
+        <label>
+          Phone
+          <input id="phone" type="text" required>
+        </label>
+        <label>
+          Website
+          <input id="website" type="text">
+        </label>
+        <div class="form-actions">
+          <button type="submit">Lưu</button>
+          <button type="button" id="cancelBtn" class="secondary">Hủy</button>
+        </div>
+      </form>
+    </section>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>

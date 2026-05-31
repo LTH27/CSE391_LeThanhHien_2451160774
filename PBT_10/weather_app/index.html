@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App - PBT 10</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>Weather App</h1>
+      <p>Nhập thành phố để xem thời tiết hiện tại.</p>
+    </header>
+    <section class="weather-card">
+      <form id="weatherForm">
+        <input id="cityInput" type="text" placeholder="Nhập thành phố, ví dụ Hanoi" autocomplete="off">
+        <button type="submit">Tìm</button>
+      </form>
+      <div id="status" class="status">Nhập tên thành phố để bắt đầu.</div>
+      <div id="weatherResult" class="weather-result hidden"></div>
+      <div class="history">
+        <h2>Lịch sử tìm kiếm</h2>
+        <ul id="historyList"></ul>
+      </div>
+    </section>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>

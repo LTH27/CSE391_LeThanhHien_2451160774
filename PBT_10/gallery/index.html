@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - PBT 10</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="gallery-shell">
+    <header>
+      <h1>Infinite Scroll Gallery</h1>
+      <p>Load ảnh tự động khi kéo xuống cuối trang.</p>
+    </header>
+    <main class="gallery-grid" id="photoGrid"></main>
+    <div id="loader" class="loader">Đang tải thêm ảnh...</div>
+    <div id="loadTrigger"></div>
+  </div>
+  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true">
+    <button id="closeLightbox" class="close-lightbox">✕</button>
+    <img id="lightboxImage" src="" alt="">
+    <p id="lightboxTitle"></p>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>

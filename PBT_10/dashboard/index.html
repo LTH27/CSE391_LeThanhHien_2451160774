@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - PBT 10</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="dashboard-shell">
+    <header>
+      <h1>Multi-API Dashboard</h1>
+      <p>Tải dữ liệu song song từ nhiều API và xử lý khi 1 API lỗi.</p>
+      <button id="refreshBtn">Refresh All</button>
+      <p id="timeInfo" class="time-info"></p>
+    </header>
+    <div class="widgets">
+      <section class="widget" id="widget1">
+        <h2>Random Users</h2>
+        <div class="widget-body" id="usersWidget">Loading...</div>
+      </section>
+      <section class="widget" id="widget2">
+        <h2>Dog Images</h2>
+        <div class="widget-body" id="dogsWidget">Loading...</div>
+      </section>
+      <section class="widget" id="widget3">
+        <h2>Country Info</h2>
+        <div class="widget-body" id="countryWidget">Loading...</div>
+      </section>
+    </div>
+  </div>
+  <script src="app.js" defer></script>
+</body>
+</html>
