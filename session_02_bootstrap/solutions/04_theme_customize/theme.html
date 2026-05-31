@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Theme Customize Solution</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bs-primary: #14b8a6;
+            --bs-primary-rgb: 20, 184, 166;
+            --bs-secondary: #64748b;
+            --bs-secondary-rgb: 100, 116, 139;
+            --bs-body-font-family: 'Inter', system-ui, sans-serif;
+            --bs-body-font-size: 1rem;
+            --bs-body-line-height: 1.6;
+            --bs-border-radius: 1rem;
+            --bs-border-radius-sm: 0.75rem;
+            --bs-border-radius-lg: 1.25rem;
+        }
+        body {
+            font-family: var(--bs-body-font-family);
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        .card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        }
+        .btn {
+            border-radius: 8px;
+        }
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+        }
+        .py-section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        .card-custom {
+            background: #ffffff;
+        }
+        .feature-badge {
+            background: #ccfbf1;
+            color: #0f766e;
+            border-radius: 999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="#">BrandTeal</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTop" aria-controls="navbarTop" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTop">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="py-section text-center bg-white">
+        <div class="container">
+            <span class="feature-badge mb-3 d-inline-block">Teal Theme</span>
+            <h1 class="display-5 fw-bold">Customized Bootstrap Theme</h1>
+            <p class="lead text-muted mx-auto" style="max-width: 720px;">A custom teal and slate color palette with softer radius, modern cards, and consistent spacing across the UI.</p>
+            <a href="#services" class="btn btn-primary btn-lg mt-3">Explore Services</a>
+        </div>
+    </header>
+
+    <section id="services" class="py-section">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-custom p-4 h-100">
+                        <h5>Design System</h5>
+                        <p class="text-muted">Teal primary colors with rounded cards and soft shadows to make the interface feel calm and approachable.</p>
+                        <span class="badge bg-primary">Primary</span>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-custom p-4 h-100">
+                        <h5>Custom Buttons</h5>
+                        <p class="text-muted">Buttons now use a custom border radius and hover states that match the teal color palette.</p>
+                        <button class="btn btn-primary mt-3">Primary Action</button>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card card-custom p-4 h-100">
+                        <h5>Form Controls</h5>
+                        <p class="text-muted">Inputs and selects are rounded with gentle spacing for a friendly form experience.</p>
+                        <input class="form-control mt-3" placeholder="Example input">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-section bg-white" id="contact">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card card-custom p-5">
+                        <h3>Contact Us</h3>
+                        <form class="row g-3 mt-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" placeholder="Your Name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="you@example.com">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Service</label>
+                                <select class="form-select">
+                                    <option>Frontend Development</option>
+                                    <option>UI/UX Design</option>
+                                    <option>Branding</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                            <div class="col-12 text-end">
+                                <button type="submit" class="btn btn-primary">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

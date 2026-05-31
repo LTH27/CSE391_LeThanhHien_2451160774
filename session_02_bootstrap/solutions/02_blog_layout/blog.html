@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blog Layout Solution</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f8fafc;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        .card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+        }
+        .sticky-top {
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <section id="blog" class="py-5">
+        <div class="container">
+            <div class="row gx-4 gy-5">
+                <div class="col-lg-8">
+                    <article class="card mb-4">
+                        <img src="https://via.placeholder.com/900x400" class="card-img-top" alt="Post 1">
+                        <div class="card-body">
+                            <span class="badge bg-primary">Technology</span>
+                            <h3 class="card-title mt-3">Building a Portfolio</h3>
+                            <p class="card-text text-muted"><small>By Author • Jan 15, 2026 • 5 min read</small></p>
+                            <p class="card-text">Learn how to build a portfolio website with modern design patterns and responsive Bootstrap components.</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card mb-4">
+                        <img src="https://via.placeholder.com/900x400" class="card-img-top" alt="Post 2">
+                        <div class="card-body">
+                            <span class="badge bg-success">Design</span>
+                            <h3 class="card-title mt-3">Responsive Blog UI</h3>
+                            <p class="card-text text-muted"><small>By Author • Feb 02, 2026 • 6 min read</small></p>
+                            <p class="card-text">A practical guide to creating a clean blog page using cards, grids, and utility classes.</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card mb-4">
+                        <img src="https://via.placeholder.com/900x400" class="card-img-top" alt="Post 3">
+                        <div class="card-body">
+                            <span class="badge bg-warning text-dark">Marketing</span>
+                            <h3 class="card-title mt-3">Boost Your Visibility</h3>
+                            <p class="card-text text-muted"><small>By Author • Mar 10, 2026 • 4 min read</small></p>
+                            <p class="card-text">Tips for using content and blog structure effectively to reach more readers.</p>
+                            <a href="#" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </article>
+                </div>
+                <div class="col-lg-4">
+                    <div class="sticky-top pt-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">Search</h5>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search...">
+                                    <button class="btn btn-primary" type="button">Go</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">Categories</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Technology
+                                    <span class="badge bg-primary rounded-pill">12</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Design
+                                    <span class="badge bg-primary rounded-pill">8</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Marketing
+                                    <span class="badge bg-primary rounded-pill">5</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    UX/UI
+                                    <span class="badge bg-primary rounded-pill">7</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">Recent Posts</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex mb-3">
+                                    <img src="https://via.placeholder.com/60" class="rounded" alt="Recent 1">
+                                    <div class="ms-3">
+                                        <h6 class="mb-1">How to start a blog</h6>
+                                        <small class="text-muted">Jan 25, 2026</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex mb-3">
+                                    <img src="https://via.placeholder.com/60" class="rounded" alt="Recent 2">
+                                    <div class="ms-3">
+                                        <h6 class="mb-1">Design trends 2026</h6>
+                                        <small class="text-muted">Feb 01, 2026</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <img src="https://via.placeholder.com/60" class="rounded" alt="Recent 3">
+                                    <div class="ms-3">
+                                        <h6 class="mb-1">Bootstrap tips</h6>
+                                        <small class="text-muted">Feb 18, 2026</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header bg-white">
+                                <h5 class="mb-0">Tags</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <span class="badge bg-secondary">HTML</span>
+                                    <span class="badge bg-secondary">CSS</span>
+                                    <span class="badge bg-secondary">JavaScript</span>
+                                    <span class="badge bg-secondary">Bootstrap</span>
+                                    <span class="badge bg-secondary">UI</span>
+                                    <span class="badge bg-secondary">Design</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
