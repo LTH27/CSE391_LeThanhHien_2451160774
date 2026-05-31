@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo — React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 2rem auto; }
+        .todo-item { display: flex; align-items: center; gap: 10px; padding: 8px; border-bottom: 1px solid #eee; }
+        .todo-item.done span { text-decoration: line-through; color: #999; }
+        .todo-item button { margin-left: auto; background: #e74c3c; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+        input[type="text"] { padding: 8px; width: 70%; }
+        button.add-btn { padding: 8px 16px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        function TodoApp() {
+            const [todos, setTodos] = useState([]);
+            const [input, setInput] = useState('');
+
+            function addTodo() {
+                const trimmed = input.trim();
+                if (!trimmed) return;
+
+                const newTodo = {
+                    id: Date.now(),
+                    text: trimmed,
+                    done: false
+                };
+
+                setTodos([...todos, newTodo]);
+                setInput('');
+            }
+
+            function toggleTodo(id) {
+                setTodos(todos.map(todo =>
+                    todo.id === id ? { ...todo, done: !todo.done } : todo
+                ));
+            }
+
+            function deleteTodo(id) {
+                setTodos(todos.filter(todo => todo.id !== id));
+            }
+
+            return (
+                <div>
+                    <h1>📋 Todo List</h1>
+                    <div>
+                        <input
+                            type="text"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            placeholder="Nhập công việc..."
+                        />
+                        <button className="add-btn" onClick={addTodo}>Thêm</button>
+                    </div>
+                    <div style={{ marginTop: '1rem' }}>
+                        {todos.map(todo => (
+                            <div key={todo.id} className={`todo-item ${todo.done ? 'done' : ''}`}>
+                                <input
+                                    type="checkbox"
+                                    checked={todo.done}
+                                    onChange={() => toggleTodo(todo.id)}
+                                />
+                                <span>{todo.text}</span>
+                                <button onClick={() => deleteTodo(todo.id)}>Xóa</button>
+                            </div>
+                        ))}
+                        {todos.length === 0 && <p>Chưa có công việc nào.</p>}
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<TodoApp />);
+    </script>
+</body>
+</html>

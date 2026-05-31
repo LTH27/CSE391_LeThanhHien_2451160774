@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio — Project Cards</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+        .project-card { border: 1px solid #ddd; border-radius: 10px; overflow: hidden; transition: transform 0.3s; background: white; position: relative; }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.1); }
+        .project-card img { width: 100%; height: 150px; object-fit: cover; }
+        .project-card .info { padding: 0.8rem; }
+        .project-card h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+        .project-card .category { font-size: 12px; padding: 2px 8px; border-radius: 10px; color: white; display: inline-block; margin-bottom: 0.4rem; }
+        .cat-web { background: #3498db; }
+        .cat-mobile { background: #27ae60; }
+        .cat-design { background: #9b59b6; }
+        .project-card .desc { font-size: 13px; color: #666; }
+        .project-card .tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 0.5rem; }
+        .project-card .tag { font-size: 11px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px; }
+        .project-card .featured { position: absolute; top: 8px; right: 8px; background: #e74c3c; color: white; font-size: 11px; padding: 2px 8px; border-radius: 10px; }
+        .empty-state { text-align: center; padding: 3rem; color: #999; }
+        .stats { display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: center; }
+        .stats span { padding: 8px 16px; background: #ecf0f1; border-radius: 8px; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <h1>🛠️ Dự án của Minh</h1>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const projects = [
+            { id: 1, title: 'Portfolio Website', category: 'web', image: 'https://via.placeholder.com/400x300', description: 'Trang portfolio cá nhân với React và CSS.', tags: ['React', 'CSS', 'Responsive'], featured: true },
+            { id: 2, title: 'Mobile App', category: 'mobile', image: 'https://via.placeholder.com/400x300', description: 'Ứng dụng mobile dùng React Native.', tags: ['React Native', 'Firebase'], featured: false },
+            { id: 3, title: 'UI Design', category: 'design', image: 'https://via.placeholder.com/400x300', description: 'Thiết kế UI cho landing page.', tags: ['Figma', 'Illustrator'], featured: false }
+        ];
+
+        function CategoryBadge({ category }) {
+            const className = category === 'web' ? 'cat-web' : category === 'mobile' ? 'cat-mobile' : 'cat-design';
+            const label = category.charAt(0).toUpperCase() + category.slice(1);
+            return <span className={`category ${className}`}>{label}</span>;
+        }
+
+        function ProjectCard({ title, category, image, description, tags, featured }) {
+            return (
+                <div className="project-card">
+                    {featured && <div className="featured">Featured</div>}
+                    <img src={image} alt={title} />
+                    <div className="info">
+                        <CategoryBadge category={category} />
+                        <h3>{title}</h3>
+                        <p className="desc">{description}</p>
+                        <div className="tags">
+                            {tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        function App() {
+            return (
+                <div>
+                    {projects.length === 0 ? (
+                        <div className="empty-state">Chưa có dự án nào để hiển thị.</div>
+                    ) : (
+                        <div className="project-grid">
+                            {projects.map(project => (
+                                <ProjectCard key={project.id} {...project} />
+                            ))}
+                        </div>
+                    )}
+                    <div className="stats">
+                        <span>Tổng dự án: {projects.length}</span>
+                        <span>Featured: {projects.filter(p => p.featured).length}</span>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
